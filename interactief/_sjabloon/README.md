@@ -1,21 +1,18 @@
-# Sjabloon voor een nieuwe interactieve visualisatie
+# Een eigen visualisatie maken
 
-Kopieer de **hele map** `_sjabloon` naar een nieuwe map onder `interactief/`, bijvoorbeeld `interactief/klimaatvergelijker/`. De map moet altijd op dit niveau blijven, anders kloppen de relatieve paden naar `../../assets/style.css` niet.
+Kopieer deze hele map naar `interactief/jouw-onderwerp/`. Bewerk uitsluitend de kopie.
+De voorbeeldbestanden werken direct zonder installatie of buildproces.
 
-Pas daarna de titel, inhoud, JavaScript en eventuele eigen CSS aan.
+| Bestand | Wat staat erin? |
+| --- | --- |
+| index.html | Teksten, bediening en verwijzingen naar andere bestanden |
+| style.css | Vormgeving die alleen bij dit element hoort |
+| physics.js | Gegevens en berekeningen, zonder bediening |
+| visualisatie.js | Bediening en uitvoer |
+| METHODE.md | Bronnen, aannames, eenheden en beperkingen |
 
-Publicatieadres:
-`https://scientias-news.github.io/interactief/klimaatvergelijker/`
+`script.js` is een oud, niet meer geladen voorbeeldbestand. Nieuwe elementen gebruiken `visualisatie.js`.
+Je kunt dat ongebruikte bestand in je eigen kopie weglaten.
 
-Iframe voor WordPress (pas naam, titel en hoogte aan):
-
-```html
-<iframe
-  src="https://scientias-news.github.io/interactief/klimaatvergelijker/"
-  title="Interactieve klimaatvergelijker van Scientias"
-  style="display:block;width:100%;height:480px;border:0;"
-  loading="lazy">
-</iframe>
-```
-
-Controleer in WordPress vooral de hoogte op smalle schermen. Hoogte wordt niet automatisch aangepast door GitHub Pages. Houd data, afhankelijkheden en styles per element gescheiden. Publiceer bij voorkeur niet van buitenaf afkomstige JavaScript-code zonder controle.
+Lees [de redactiehandleiding](../../docs/REDACTIE.md) voor de stappen in GitHub en de publicatiecontrole.
+Gebruik [de WordPress-handleiding](../../docs/WORDPRESS.md) voor de iframecode.

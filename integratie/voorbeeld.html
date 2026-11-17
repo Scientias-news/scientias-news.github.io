@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lokale iframecontrole Scientias</title>
+  <style>body{font:18px/1.6 system-ui;max-width:800px;margin:40px auto;padding:0 16px}iframe{display:block;width:100%;height:2200px;border:0}</style>
+  <script src="wordpress-parent.js" defer></script>
+</head>
+<body>
+  <h1>Iframecontrole</h1>
+  <p>Dit is een lokale proefpagina. Scroll over de kaart, open de tabel, toon alle mijlpalen en verstuur signalen. De hoogte moet meegroeien en weer krimpen. De tweede iframe mag niet meeveranderen.</p>
+  <iframe data-scientias-embed src="http://127.0.0.1:8001/interactief/voyager-1-v2/#embed-licht" title="Proef: de reis van Voyager 1" loading="lazy"></iframe>
+  <p>Tekst tussen twee onafhankelijke visualisaties.</p>
+  <iframe data-scientias-embed src="http://127.0.0.1:8001/interactief/_sjabloon/" title="Proef: golflengte en frequentie" loading="lazy" style="height:600px"></iframe>
+  <p>Einde van het artikel. Deze alinea moet bereikbaar blijven.</p>
+</body>
+</html>
