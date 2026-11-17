@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voyager 1 staat één lichtdag van huis | Scientias</title>
+<link rel="stylesheet" href="../../assets/basis.css">
+<link rel="stylesheet" href="style.css">
+<script src="physics.js" defer></script>
+<script src="visualisatie.js" defer></script>
+<script src="../../assets/embed-child.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#g-kaart">Naar de visualisatie</a>
+<noscript><p>JavaScript is nodig voor de interactieve kaart en cijfers. Hieronder staan de modeluitleg en bronnen.</p></noscript>
+<div class="frame">
+<header>
+  <div class="topb"><p class="brand">SCIENTI&Lambda;S</p><span class="tag">Interactieve kaart</span></div>
+  <div class="head">
+    <h1>Voyager 1 staat één lichtdag van huis</h1>
+    <p class="lede">Op woensdag 18 november om 11.16 uur staat de NASA-sonde zo ver van de aarde dat licht er een volle dag over doet. Geen ander ruimtetuig kwam ooit zo ver. Volg Voyager 1 live, spoel terug naar de lancering in 1977 of kijk een miljoen jaar vooruit.</p>
+  </div>
+</header>
+<main>
+
+<section class="blok" id="g-kaart">
+<h2>Waar is Voyager 1 nu?</h2>
+<p class="sub">De tellers lopen live mee. Sleep over de kaart om te draaien, zoom in of uit en verzet de tijd met de knoppen eronder.</p>
+<div class="kpi">
+  <div class="kpi-earth"><span class="k">Afstand tot de aarde</span><b id="dKm">…</b><span class="s" id="dSub">&nbsp;</span></div>
+  <div class="kpi-light"><span class="k">Reistijd van een radiosignaal</span><b id="lt">…</b><span class="s" id="ltSub">&nbsp;</span></div>
+  <div class="kpi-sun"><span class="k">Afstand tot de zon</span><b id="dSun">…</b><span class="s" id="dSunSub">&nbsp;</span></div>
+  <div class="kpi-star"><span class="k">Dichtstbijzijnde ster</span><b id="star">…</b><span class="s" id="starSub">&nbsp;</span></div>
+</div>
+<div class="tog" role="group" aria-label="Zoom">
+  <button type="button" data-r="32">Planeten</button>
+  <button type="button" data-r="230" title="De bel die de zonnewind rond het zonnestelsel blaast">Heliosfeer</button>
+  <button type="button" data-r="140000">Oortwolk</button>
+  <button type="button" data-r="1400000">Sterren</button>
+  <span class="sep"></span>
+  <button type="button" id="follow" aria-pressed="true">Volg Voyager</button>
+  <button type="button" id="resetView">Reset</button>
+  <button type="button" id="themeBtn" aria-pressed="false" title="Schakel tussen lichte en donkere modus">Donker</button>
+</div>
+<div class="box">
+  <canvas id="map" tabindex="0" role="img" aria-describedby="kaart-hulp" aria-label="Kaart van het zonnestelsel en de omgeving met de positie van Voyager 1. De cijfers staan ook in de tabel onder de mijlpalen.">De kaart toont Voyager, planeten en een selectie sterren. De kerncijfers en mijlpalentabel geven afstanden in tekst weer.</canvas>
+  <div class="hud tl">
+    <div class="date" id="date">…</div>
+    <div class="since" id="since">&nbsp;</div>
+    <div class="badge" id="badge"><i></i><span id="badgeTxt">Live</span></div>
+    <div class="ld" id="ld"></div>
+  </div>
+  <div class="hud bl"><div class="scale"><b id="scaleBar"></b><span id="scaleLbl" class="num"></span></div></div>
+  <div class="hud br" id="hintBr">Sleep om te draaien en te kantelen · Ctrl + scroll om te zoomen</div>
+  <div class="hud touch">Veeg opzij om te draaien · knijp om te zoomen</div>
+  <div class="zhint" id="zhint">Houd Ctrl (of ⌘) ingedrukt en scroll om te zoomen</div>
+</div>
+<p id="kaart-hulp" class="fine">Toetsenbord op de kaart: pijltjes draaien en kantelen, + en − zoomen, spatie pauzeert. Op een touchscreen kun je verticaal door het artikel scrollen. Gebruik de zoomknoppen als knijpen niet werkt.</p>
+<div class="legend">
+  <span><em></em>afgelegde weg</span><span><em class="f"></em>verwachte route</span><span><em class="s"></em>lichtsignaal en lichtdag</span>
+</div>
+<div class="tog ctrl" role="group" aria-label="Tijd">
+  <button type="button" class="pill" id="play">Pauze</button>
+  <button type="button" class="pill on" id="live" aria-pressed="true">Live</button>
+  <span class="speed" aria-label="Snelheid"><button type="button" id="slower" aria-label="Trager">&minus;</button><span id="speedLbl">echte tijd</span><button type="button" id="faster" aria-label="Sneller">+</button></span>
+  <button type="button" class="pill" id="rev" aria-pressed="false">Achteruit</button>
+</div>
+<div class="tline">
+  <div class="ticks" id="ticks"></div>
+  <input type="range" id="slider" min="0" max="10000" step="1" value="0" aria-label="Tijdlijn">
+  <div class="axis" id="axis"></div>
+</div>
+<p class="fine">De tijdlijn rekt uit: hoe verder naar rechts, hoe meer jaren per centimeter. Vóór midden 1982 zijn afstand en positie benaderd.</p>
+<p class="foot">Bron: NASA JPL; Bailer-Jones &amp; Farnocchia (2019); stergegevens van Gaia en Hipparcos. Kaart: Andrei Stiru / Scientias</p>
+</section>
+
+<section class="blok" id="side">
+<h2>Van 1977 tot over een miljoen jaar</h2>
+<p class="sub">Klik op een mijlpaal om erheen te springen. De kaart zoomt mee.</p>
+<div class="ms-nav"><button type="button" class="pill" id="msPrev">‹ Vorige</button><button type="button" class="pill" id="msNext">Volgende ›</button><button type="button" class="pill ms-all" id="msAll" aria-expanded="false" aria-controls="msList">Alle mijlpalen</button></div>
+<ol class="ms" id="msList"></ol>
+<details class="cijfers">
+  <summary>Bekijk de cijfers</summary>
+  <div class="tbl"><table>
+    <caption>Afstand van Voyager 1 tot de zon bij elke mijlpaal. Voor 1982 gaat het om een benadering.</caption>
+    <thead><tr><th scope="col">Moment</th><th scope="col">Gebeurtenis</th><th scope="col">Afstand tot de zon</th></tr></thead>
+    <tbody id="cijfersBody"></tbody>
+  </table></div>
+</details>
+</section>
+
+<section class="blok">
+<h2>Stuur zelf een lichtsignaal</h2>
+<p class="sub">Radiogolven reizen met de snelheid van het licht. Verstuur een signaal vanaf de aarde en kijk hoe lang het onderweg is naar Voyager 1. Op de kaart zie je het als een uitdijende bol.</p>
+<form class="sig-form" id="sigForm">
+  <input id="sigMsg" maxlength="60" placeholder="Je boodschap (mag leeg blijven)" autocomplete="off" aria-label="Je boodschap">
+  <button type="submit" class="pill">Verstuur</button>
+</form>
+<p id="status" class="sr-only" role="status"></p>
+<ul class="sig-list" id="sigList"></ul>
+</section>
+
+<section class="method">
+<p><a href="METHODE.md">Technische methode en bekende beperkingen (Markdown)</a></p>
+<h2>Zo is de kaart gemaakt</h2>
+<p>Na de passage langs Saturnus vliegt Voyager 1 bijna rechtdoor. Richting en eindsnelheid (16,6 kilometer per seconde) komen uit een studie van Coryn Bailer-Jones en Davide Farnocchia, die vertrekt van NASA's baangegevens. Dat de zon de sonde nog licht afremt, zit mee in de berekening. Tot midden 1982 volgt de baan een vloeiende lijn door de posities van de aarde bij de lancering en van Jupiter en Saturnus op de dagen van de passages. Dat stuk is een benadering.</p>
+<p>De kaart is afgesteld op het tijdstip dat NASA opgeeft voor de lichtdag: 18 november 2026, 11.16.07 uur Belgische tijd. Ze komt ook op andere momenten uit op de gepubliceerde afstanden. Denk aan de Pale Blue Dot-foto op 6 miljard kilometer, de twee grenzen van de zonnewind op 94 en zo'n 122 keer de afstand tussen aarde en zon, en 23 uur en 30 minuten reistijd voor een radiosignaal in november 2025.</p>
+<p>De afstand tot de aarde schommelt mee met de baan van de aarde rond de zon. Elk voorjaar neemt ze daardoor een paar weken af. De aarde beweegt dan sneller naar Voyager toe dan Voyager wegvliegt.</p>
+<p>Sterren bewegen in een rechte lijn, op basis van hun gemeten positie, afstand en snelheid. De zwaartekracht van de Melkweg zit er niet in. Hoe verder in de toekomst, hoe ruwer de kaart dus wordt. De ontmoetingen met Proxima Centauri en Gliese 445 komen overeen met de studie van Bailer-Jones en Farnocchia. De heliosfeer en de Oortwolk zijn vereenvoudigd tot bollen. De stipjes in de Oortwolk zijn een illustratie. Klokuren staan in de tijdzone van je eigen toestel, de data van de mijlpalen in wereldtijd.</p>
+<p>Bronnen: <a href="https://science.nasa.gov/mission/voyager/where-are-voyager-1-and-voyager-2-now/" target="_blank" rel="noopener">NASA, Where are Voyager 1 and 2 now?</a> · <a href="https://science.nasa.gov/mission/voyager/interstellar-mission" target="_blank" rel="noopener">NASA, Interstellar mission</a> · <a href="https://arxiv.org/abs/1912.03503" target="_blank" rel="noopener">Bailer-Jones &amp; Farnocchia (2019)</a> · <a href="https://www.jpl.nasa.gov/news/nasa-turns-off-two-voyager-science-instruments-to-extend-mission/" target="_blank" rel="noopener">JPL, instrumenten uitgeschakeld</a> · <a href="https://ssd.jpl.nasa.gov/planets/approx_pos.html" target="_blank" rel="noopener">JPL, baanelementen van de planeten</a></p>
+</section>
+</main>
+</div>
+
+
+
+</body>
+</html>

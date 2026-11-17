@@ -20,13 +20,17 @@ Elke visualisatie werkt zelfstandig met een eigen `index.html`. Specifieke CSS e
 1. Kopieer de hele map `interactief/_sjabloon/` naar `interactief/<unieke-korte-naam>/`.
 2. Bewerk `index.html`, `style.css` en `script.js` in die nieuwe map.
 3. Test het element op desktop, mobiel en met toetsenbord.
-4. Commit naar `main`. GitHub Pages publiceert de bestanden bij de volgende deployment.
+4. Werk op een eigen branch en open een pull request naar `main`. Laat een collega controleren voordat iemand samenvoegt. GitHub Pages publiceert de bestanden na de merge bij de volgende deployment.
 5. Gebruik `https://scientias-news.github.io/interactief/<unieke-korte-naam>/` in het WordPress-iframe.
 6. Voeg alleen als gewenst een link op de hoofdpagina toe. Dit is **niet nodig** om de visualisatie te publiceren.
 
 **Belangrijk:** houd nieuwe mappen direct onder `interactief/`, op dezelfde diepte als `_sjabloon`. De verwijzing naar de gedeelde stylesheet is daarop afgestemd.
 
 ## WordPress
+
+Zie [de uitgebreide WordPress-handleiding](docs/WORDPRESS.md) voor automatische iframehoogte,
+veilige communicatie en een afzonderlijk voorstel voor een eenmalig hostscript.
+Onderstaand bestaand voorbeeld blijft bruikbaar met vaste hoogte.
 
 Plaats in een blok **Aangepaste HTML**:
 
@@ -46,6 +50,28 @@ Pas `src`, `title` en `height` per element aan. De breedte is responsief; de hoo
 In **Settings → Pages**: **Deploy from a branch**, `main`, `/(root)`. Omdat de repository de naam `scientias-news.github.io` heeft, is dit een GitHub Pages-accountsite met de URL https://scientias-news.github.io/.
 
 ## Redactionele afspraken
+
+Begin bij [de korte redactiehandleiding](docs/REDACTIE.md), inclusief publicatiechecklist.
+
+## Voyager versie 2 ter beoordeling
+
+De oorspronkelijke [Voyager 1](interactief/voyager-1/) blijft intact en de voorkeurslink op de
+publieksindex blijft ongewijzigd. De nieuwe [versie 2](interactief/voyager-1-v2/) is afzonderlijk
+voorbereid. De nieuwe URL werkt publiek pas na een eventuele merge en Pages-deployment.
+
+- [Analyse van de bestaande repository](docs/ANALYSE.md)
+- [Verschillen tussen de versies](docs/VERSCHILLEN.md)
+- [Methode, bronnen en modelbeperkingen](interactief/voyager-1-v2/METHODE.md)
+- [Testresultaten en openstaande controles](docs/KWALITEIT.md)
+- [Voorbereide pull request](docs/PULL_REQUEST.md)
+- [Oplevering en de branch overdragen](docs/OPLEVERING.md)
+
+De gedeelde nieuwe basis (`assets/basis.css` en `assets/embed-child.js`) wordt alleen geladen
+door nieuwe visualisaties. De bestaande `assets/style.css` is niet gewijzigd. Publicatie heeft
+geen buildproces nodig. Ontwikkeltests draaien met `node tests/run.cjs` en
+`python3 tests/structure.py`; browsercontroles zijn apart beschreven in de kwaliteitsdocumentatie.
+
+## Afspraken per element
 
 - Geef ieder element een beschrijvende, blijvende URL.
 - Gebruik relatieve paden naar eigen JavaScript/CSS en laad alleen wat nodig is.

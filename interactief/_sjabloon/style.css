@@ -1,2 +1,5 @@
-/* Aanvullende stijlen die alleen voor deze visualisatie gelden. */
-/* De algemene Scientias-basisstijl wordt al in index.html geladen. */
+:root{--accent:var(--scientias-green);--accent-dark:var(--scientias-green);--ink:#000;--muted:#595959}
+body{font-family:var(--scientias-font)}
+.embed{border-radius:0}
+input[type=range]{min-height:44px}
+a:focus-visible{outline:3px solid var(--scientias-green);outline-offset:3px}

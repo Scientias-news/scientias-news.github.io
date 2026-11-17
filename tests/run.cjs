@@ -1,0 +1,11 @@
+'use strict';
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+const root = path.resolve(__dirname, '..');
+const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
+const original = fs.readFileSync(path.join(root, 'interactief/voyager-1/index.html'));
+const blob = crypto.createHash('sha1').update('blob ' + original.length + '\0').update(original).digest('hex');
+if (blob !== '971558a2a0b6ee0aa1f87a12ec4c1b896a46246c') throw new Error('Original Voyager file changed!');
+require('./cases.js');
+globalThis.runScientiasTests(read, console.log);

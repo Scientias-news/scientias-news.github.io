@@ -3,19 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Interactieve visualisatie van Scientias.">
-  <title>Nieuwe visualisatie | Scientias</title>
+  <meta name="description" content="Sjabloon voor een interactieve Scientias-visualisatie.">
+  <title>Sjabloon: golflengte en frequentie | Scientias</title>
   <link rel="stylesheet" href="../../assets/style.css">
+  <link rel="stylesheet" href="../../assets/basis.css">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer></script>
+  <script src="physics.js" defer></script>
+  <script src="visualisatie.js" defer></script>
+  <script src="../../assets/embed-child.js" defer></script>
 </head>
 <body class="embed-page">
-  <main class="embed">
-    <h1>Titel van de visualisatie</h1>
-    <p>Korte uitleg van wat de bezoeker kan onderzoeken.</p>
-    <label for="waarde">Voorbeeldwaarde: <output id="uitvoer" for="waarde">50</output></label>
-    <input id="waarde" type="range" min="0" max="100" value="50">
-    <p class="note">Vermeld hier bij echte data de bron, peildatum en eventuele onzekerheden.</p>
+  <a class="skip-link" href="#visualisatie">Naar de visualisatie</a>
+  <main class="embed" id="visualisatie">
+    <h1>Hoe lang is een radiogolf?</h1>
+    <p>Verander de frequentie. Een hogere frequentie geeft in vacuüm een kortere golflengte.</p>
+    <label for="frequentie">Frequentie in megahertz</label>
+    <input id="frequentie" type="range" min="100" max="1000" step="10" value="100" aria-describedby="toelichting">
+    <p><output class="output" id="uitvoer" for="frequentie">100 MHz: 3,00 meter</output></p>
+    <p id="toelichting">De formule is golflengte = lichtsnelheid / frequentie. Dit voorbeeld geldt voor elektromagnetische golven in vacuüm.</p>
+    <p class="note">Bron: lichtsnelheid in SI, 299.792.458 meter per seconde. <a href="METHODE.md">Methode en beperkingen</a>.</p>
+    <noscript><p>JavaScript is nodig voor de schuifregelaar. Bij 100 MHz is de golflengte ongeveer 3 meter.</p></noscript>
   </main>
 </body>
 </html>
