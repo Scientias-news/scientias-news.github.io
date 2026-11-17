@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactieve demonstratie van de relatie tussen frequentie en golflengte.">
+  <title>Golflengte en frequentie | Scientias Interactief</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body class="embed-page">
+  <main class="embed">
+    <h1>Golflengte en frequentie</h1>
+    <p>Bij elektromagnetische golven in vacuüm geldt: golflengte = lichtsnelheid / frequentie. Schuif om het verband te verkennen.</p>
+    <label for="frequency">Frequentie: <output id="frequency-value" for="frequency">100</output> MHz</label>
+    <input id="frequency" type="range" min="50" max="500" step="10" value="100">
+    <p>Golflengte: <strong class="output"><output id="wavelength">3,00 m</output></strong></p>
+    <svg class="wave" viewBox="0 0 640 180" role="img" aria-labelledby="wave-title wave-desc">
+      <title id="wave-title">Schematische golf</title>
+      <desc id="wave-desc">De golf toont meer oscillaties wanneer de frequentie hoger wordt. Dit is een schematische weergave en geen schaaltekening.</desc>
+      <path d="M 16 90 H 624" stroke="#b9d8dc" stroke-width="2"/>
+      <path id="wave-path" d="" fill="none" stroke="#007a82" stroke-width="4" stroke-linecap="round"/>
+    </svg>
+    <p class="note">Schematische weergave, niet op schaal. Berekend voor voortplanting in vacuüm.</p>
+  </main>
+  <script src="script.js" defer></script>
+</body>
+</html>
