@@ -1,52 +1,55 @@
 # Scientias Interactief
 
-Deze repository bevat zelfstandige, statische HTML/CSS/JavaScript-visualisaties om in artikelen op [Scientias.nl](https://scientias.nl/) op te nemen.
+Deze repository host afzonderlijke interactieve visualisaties voor [Scientias.nl](https://scientias.nl/). Elke visualisatie heeft een eigen URL en kan onafhankelijk in een WordPress-artikel worden ingesloten.
 
-## Structuur
+**Website:** https://scientias-news.github.io/
 
-- `index.html`: overzichtspagina.
+## Indeling
+
+- `index.html`: publieksindex met links naar uitgelichte visualisaties.
 - `assets/style.css`: gedeelde basisopmaak.
-- `voorbeelden/golflengte/`: eerste interactieve demonstratie.
-- `.nojekyll`: voorkom onnodige Jekyll-verwerking door GitHub Pages.
+- `interactief/_sjabloon/`: kopieerbaar startpunt voor nieuwe losse interactieve elementen.
+- `interactief/<naam>/`: aanbevolen plek voor iedere nieuwe productievisualisatie.
+- `voorbeelden/golflengte/`: bestaande demonstratie, met eigen HTML en JavaScript.
+- `.nojekyll`: publiceer statische bestanden zonder Jekyll.
 
-## Publiceren
+Elke visualisatie werkt zelfstandig met een eigen `index.html`. Specifieke CSS en JavaScript staan in dezelfde map. Nieuwe visualisaties veranderen bestaande exemplaren niet, behalve als je de gedeelde CSS bewust wijzigt.
 
-Ga naar **Settings → Pages → Build and deployment**. Kies **Deploy from a branch**, branch `main`, folder `/(root)` en sla op.
+## Nieuw interactief element toevoegen
 
-**Let op:** deze repository heet `scientias.github.io`, terwijl de GitHub-account `Scientias-news` heet. De verwachte *project-site*-URL is daarom:
+1. Kopieer de hele map `interactief/_sjabloon/` naar `interactief/<unieke-korte-naam>/`.
+2. Bewerk `index.html`, `style.css` en `script.js` in die nieuwe map.
+3. Test het element op desktop, mobiel en met toetsenbord.
+4. Commit naar `main`. GitHub Pages publiceert de bestanden bij de volgende deployment.
+5. Gebruik `https://scientias-news.github.io/interactief/<unieke-korte-naam>/` in het WordPress-iframe.
+6. Voeg alleen als gewenst een link op de hoofdpagina toe. Dit is **niet nodig** om de visualisatie te publiceren.
 
-https://scientias-news.github.io/scientias.github.io/
+**Belangrijk:** houd nieuwe mappen direct onder `interactief/`, op dezelfde diepte als `_sjabloon`. De verwijzing naar de gedeelde stylesheet is daarop afgestemd.
 
-Een website direct onder https://scientias-news.github.io/ vereist een repository met de exacte naam `Scientias-news.github.io` (niet hoofdlettergevoelig).
+## WordPress
 
-## WordPress iframe
-
-Plaats in WordPress een blok **Aangepaste HTML** met:
+Plaats in een blok **Aangepaste HTML**:
 
 ```html
 <iframe
-  src="https://scientias-news.github.io/scientias.github.io/voorbeelden/golflengte/"
-  title="Interactieve uitleg: golflengte en frequentie"
+  src="https://scientias-news.github.io/voorbeelden/golflengte/"
+  title="Interactieve uitleg over golflengte en frequentie"
   style="display:block;width:100%;height:490px;border:0;"
   loading="lazy">
 </iframe>
 ```
 
-De iframehoogte is voorlopig vast; controleer mobiel of de inhoud niet wordt afgesneden. Een iframe past zijn hoogte niet vanzelf aan. Voor dynamische hoogte zijn aanvullende `postMessage`-code op zowel de hostpagina als WordPress nodig.
+Pas `src`, `title` en `height` per element aan. De breedte is responsief; de hoogte is niet automatisch responsief. Controleer de iframe dus ook op een mobiel scherm. Dynamische hoogte vereist eventueel aanvullende `postMessage`-code aan zowel de iframe- als de WordPress-kant.
 
-## Nieuwe visualisatie toevoegen
+## GitHub Pages configuratie
 
-1. Maak een nieuwe map, bijvoorbeeld `klimaat/voorbeeld/`.
-2. Voeg een `index.html` toe, met relatieve verwijzingen naar benodigde stijlen/scripts.
-3. Voeg desgewenst een kaart/link aan de hoofdpagina toe.
-4. Publiceer via een commit naar `main`.
-5. Gebruik de uiteindelijke GitHub Pages-URL in het iframe.
+In **Settings → Pages**: **Deploy from a branch**, `main`, `/(root)`. Omdat de repository de naam `scientias-news.github.io` heeft, is dit een GitHub Pages-accountsite met de URL https://scientias-news.github.io/.
 
-## Technische en redactionele uitgangspunten
+## Redactionele afspraken
 
-- Mobiel bruikbaar en toetsenbordtoegankelijk.
-- Werk bij voorkeur zonder externe afhankelijkheden.
-- Vermeld bij echte data de bron, datum, eenheden en onzekerheden.
-- Voeg geen API-sleutels, wachtwoorden of persoonsgegevens toe aan deze publieke repository.
-- Gebruik HTML, CSS en JavaScript die in moderne browsers werken.
-- Controleer de WordPress-preview op iframebeleid en CSP.
+- Geef ieder element een beschrijvende, blijvende URL.
+- Gebruik relatieve paden naar eigen JavaScript/CSS en laad alleen wat nodig is.
+- Vermeld bij werkelijke data bron, peildatum, eenheden en onzekerheden.
+- Houd bediening en tekst toegankelijk met toetsenbord en mobiele schermen.
+- Zet geen wachtwoorden, persoonlijke gegevens of geheime API-sleutels in publieke bestanden.
+- Controleer de visualisatie in het gepubliceerde Scientias-artikel op iframebeleid, vormgeving en prestaties.
