@@ -4,6 +4,7 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit, unquote
 import hashlib
 import re
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 original = (ROOT / 'interactief/voyager-1/index.html').read_bytes()
@@ -22,7 +23,7 @@ class Page(HTMLParser):
         if 'id' in attrs:
             assert attrs['id'] not in self.ids, f"Duplicate id {attrs['id']}"
             self.ids.add(attrs['id'])
-        for key in ('src', 'href'):
+        for key in ('src', 'href', 'data-src'):
             if key in attrs:
                 self.references.append(attrs[key])
         for key in ('aria-describedby', 'aria-labelledby'):
@@ -60,6 +61,13 @@ for path in pages:
         code = (path.parent / 'visualisatie.js').read_text()
         for target in re.findall(r"\$\('([^']+)'\)", code):
             assert target in page.ids, f'Missing UI element {target}'
+    if path.parent.name == 'fijnstof-europese-steden':
+        assert page.scripts == ['data.js', 'visualisatie.js', '../../assets/embed-child.js']
+        assert '<style>' not in path.read_text() and '<script>' not in path.read_text()
+        for svg in ('kaart-europa.svg', 'kaart-benelux.svg'):
+            assert ET.parse(path.parent / svg).getroot().tag == '{http://www.w3.org/2000/svg}svg'
+        for font in re.findall(r'url\(["\']?(fonts/[^)"\']+)', (path.parent / 'style.css').read_text()):
+            assert (path.parent / font).read_bytes().startswith(b'wOF2'), font
 
 for path in sources('*.md'):
     for target in re.findall(r'\]\(([^\s)]+)\)', path.read_text()):

@@ -1,0 +1,552 @@
+html,body {
+  margin:0;
+  background:#fff
+}
+
+@font-face {
+  font-family:'Montserrat SC';
+  font-weight:400;
+  font-style:normal;
+  font-display:swap;
+  src:url(fonts/montserrat-sc-400.woff2) format('woff2');
+}
+
+@font-face {
+  font-family:'Montserrat SC';
+  font-weight:500;
+  font-style:normal;
+  font-display:swap;
+  src:url(fonts/montserrat-sc-500.woff2) format('woff2');
+}
+
+@font-face {
+  font-family:'Montserrat SC';
+  font-weight:600;
+  font-style:normal;
+  font-display:swap;
+  src:url(fonts/montserrat-sc-600.woff2) format('woff2');
+}
+
+@font-face {
+  font-family:'Montserrat SC';
+  font-weight:700;
+  font-style:normal;
+  font-display:swap;
+  src:url(fonts/montserrat-sc-700.woff2) format('woff2');
+}
+
+.sc-graphic {
+  color-scheme:light;
+  --green:#2C5941;
+  --ink:#000;
+  --ink2:#3D3D3D;
+  --muted:#6B6B6B;
+  --line:#E5E5E5;
+  font-family:'Montserrat SC',Montserrat,'Helvetica Neue',Arial,sans-serif;
+  color:var(--ink);
+  -webkit-font-smoothing:antialiased;
+  max-width:760px;
+  margin:0 auto;
+  background:#fff;
+  border:1px solid #000;
+  text-align:left;
+  line-height:normal
+}
+
+.sc-graphic * {
+  box-sizing:border-box
+}
+
+.sc-graphic h2,.sc-graphic p {
+  font-family:inherit
+}
+
+.sc-static svg {
+  width:100%;
+  height:auto;
+  display:block
+}
+
+.sc-head {
+  background:#000;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+
+.sc-logo {
+  color:#fff;
+  font-weight:500;
+  font-size:17px;
+  letter-spacing:.34em;
+  line-height:1;
+  display:inline-flex;
+  align-items:center;
+  white-space:nowrap
+}
+
+.sc-logo svg {
+  width:.74em;
+  height:.72em;
+  margin-right:.34em;
+  display:inline-block
+}
+
+.sc-kicker {
+  color:#fff;
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  border-left:3px solid var(--green);
+  padding-left:8px
+}
+
+.sc-body {
+  padding:22px 20px 16px
+}
+
+.sc-title {
+  font-size:24px;
+  line-height:1.2;
+  font-weight:700;
+  margin:0 0 8px;
+  letter-spacing:-.01em;
+  color:#000
+}
+
+.sc-sub {
+  font-size:14.5px;
+  line-height:1.45;
+  color:var(--ink2);
+  margin:0 0 18px;
+  font-weight:400
+}
+
+.sc-legend {
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px 16px;
+  margin:0 0 12px;
+  font-size:12.5px;
+  color:var(--ink2);
+  font-weight:500
+}
+
+.sc-legend span {
+  display:inline-flex;
+  align-items:center;
+  gap:6px
+}
+
+.sc-legend i {
+  display:inline-block;
+  width:18px;
+  height:12px;
+  border-radius:3px
+}
+
+.sc-legend i.dot {
+  width:12px;
+  height:12px;
+  border-radius:50%
+}
+
+.sc-legend i.line {
+  height:0;
+  border-top:3px solid;
+  border-radius:0
+}
+
+.sc-legend i.dash {
+  height:0;
+  border-top:3px dashed;
+  border-radius:0
+}
+
+.sc-chart {
+  position:relative;
+  width:100%
+}
+
+.sc-chart svg {
+  display:block;
+  overflow:visible
+}
+
+.sc-chart text {
+  font-family:inherit
+}
+
+.tick {
+  font-size:12px;
+  fill:var(--muted);
+  font-weight:500
+}
+
+.axis {
+  font-size:12.5px;
+  fill:var(--ink2);
+  font-weight:600
+}
+
+.dlabel {
+  font-size:13px;
+  fill:var(--ink);
+  font-weight:600
+}
+
+.rlabel {
+  font-size:14px;
+  fill:var(--ink);
+  font-weight:600
+}
+
+.rsub {
+  font-size:12.5px;
+  fill:var(--muted);
+  font-weight:500
+}
+
+.vlabel {
+  font-size:14px;
+  fill:var(--ink);
+  font-weight:700
+}
+
+.vlabel.big {
+  font-size:18px
+}
+
+.chip {
+  font-size:11.5px;
+  font-weight:600
+}
+
+.note {
+  font-size:12px;
+  fill:var(--green);
+  font-weight:600
+}
+
+.when {
+  font-size:12px;
+  fill:var(--green);
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase
+}
+
+.who {
+  font-size:17px;
+  fill:var(--ink);
+  font-weight:700
+}
+
+.what {
+  font-size:14.5px;
+  fill:var(--ink2);
+  font-weight:400
+}
+
+.sc-tip {
+  position:absolute;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .12s;
+  background:#000;
+  color:#fff;
+  font-size:12.5px;
+  line-height:1.45;
+  padding:9px 11px;
+  border-radius:6px;
+  max-width:270px;
+  z-index:5;
+  box-shadow:0 4px 14px rgba(0,0,0,.18)
+}
+
+.sc-tip .row {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  margin-top:3px
+}
+
+.sc-tip .sw {
+  display:inline-block;
+  width:10px;
+  height:10px;
+  border-radius:2px;
+  outline:1px solid #fff
+}
+
+.sc-tip .muted {
+  color:#BFBFBF;
+  margin-top:3px
+}
+
+.sc-notes {
+  margin:14px 0 0;
+  font-size:12px;
+  line-height:1.5;
+  color:var(--muted)
+}
+
+.sc-notes p {
+  margin:0 0 4px
+}
+
+.sc-foot {
+  border-top:1px solid var(--line);
+  margin-top:12px;
+  padding-top:10px;
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  font-size:11.5px;
+  color:var(--muted);
+  font-weight:500
+}
+
+.sc-foot b {
+  color:var(--ink);
+  font-weight:600
+}
+
+details.sc-data {
+  margin-top:10px;
+  font-size:12.5px
+}
+
+details.sc-data summary {
+  cursor:pointer;
+  color:var(--green);
+  font-weight:600
+}
+
+details.sc-data table {
+  border-collapse:collapse;
+  margin-top:8px;
+  width:100%
+}
+
+details.sc-data th,details.sc-data td {
+  text-align:left;
+  padding:5px 8px;
+  border-bottom:1px solid var(--line);
+  vertical-align:top
+}
+
+details.sc-data th {
+  font-weight:600;
+  color:var(--ink2)
+}
+
+@media (max-width:520px) {
+  .sc-title {
+    font-size:20px
+  }
+  .sc-body {
+    padding:18px 14px 14px
+  }
+  .sc-head {
+    padding:12px 14px
+  }
+  .sc-logo {
+    font-size:15px
+  }
+}
+
+.sc-graphic :focus-visible {
+  outline:2px solid var(--green);
+  outline-offset:2px
+}
+
+.sc-maps {
+  display:grid;
+  grid-template-columns:2fr 1fr;
+  gap:14px;
+  align-items:start
+}
+
+@media (max-width:620px) {
+  .sc-maps {
+    grid-template-columns:1fr
+  }
+}
+
+.sc-maps svg {
+  width:100%;
+  height:auto;
+  display:block
+}
+
+.mapcap {
+  font-size:12.5px;
+  font-weight:600;
+  color:#3D3D3D;
+  margin:0 0 6px
+}
+
+.mlab {
+  font-size:11px;
+  font-weight:600;
+  fill:#000;
+  pointer-events:none
+}
+
+.mrank {
+  fill:#2C5941;
+  font-weight:700
+}
+
+.city {
+  cursor:pointer
+}
+
+.city:hover,.city:focus {
+  stroke:#000;
+  stroke-width:1.6
+}
+
+.sc-legend i.dot {
+  outline:1px solid #D0D0D0
+}
+
+.kpis {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:0 0 16px
+}
+
+.kpi {
+  flex:1 1 150px;
+  border-left:3px solid #2C5941;
+  padding:2px 0 2px 10px
+}
+
+.kpi b {
+  display:block;
+  font-size:22px;
+  font-weight:700;
+  color:#000;
+  line-height:1.15
+}
+
+.kpi span {
+  font-size:12.5px;
+  color:#3D3D3D;
+  line-height:1.35;
+  display:block
+}
+
+details.sc-data table {
+  font-size:12px
+}
+
+details.sc-data .scroll {
+  max-height:320px;
+  overflow:auto
+}
+
+body {
+  margin: 0;
+  background: #fff;
+}
+
+.sc-graphic {
+  margin: 0 auto;
+}
+
+.city-search {
+  margin: 0 0 16px;
+}
+
+.city-search label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.city-search input {
+  width: 100%;
+  max-width: 360px;
+  padding: 10px 12px;
+  border: 1px solid #6b6b6b;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 15px;
+}
+
+.city-search p {
+  margin: 8px 0 0;
+  min-height: 2.5em;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.sc-map-svg[data-src="kaart-europa.svg"] {
+  aspect-ratio: 720 / 740;
+}
+
+.sc-map-svg[data-src="kaart-benelux.svg"] {
+  aspect-ratio: 360 / 502;
+}
+
+.sc-chart .city.selected {
+  stroke: #e76f19;
+  stroke-width: 3;
+  paint-order: stroke;
+}
+
+.sc-chart .city {
+  cursor: pointer;
+}
+
+.sc-tip {
+  white-space: pre-line;
+}
+
+@media (max-width: 620px) {
+  .sc-graphic {
+    border-left: 0;
+    border-right: 0;
+  }
+  .sc-chart .city.bn {
+    cursor: pointer;
+  }
+}
+
+.sc-legend .legend-title {
+  color: #000;
+  font-weight: 600;
+}
+
+.sc-legend .pm-safe {
+  background: #c9e0d0;
+}
+
+.sc-legend .pm-low {
+  background: #7fb58f;
+}
+
+.sc-legend .pm-medium {
+  background: #2c5941;
+}
+
+.sc-legend .pm-high {
+  background: #16301f;
+}
+
+.sc-legend .pm-very-high {
+  background: #000;
+}
+
+.sc-data .table-note {
+  color: #6b6b6b;
+  margin: 6px 0 0;
+}
