@@ -4,7 +4,8 @@
 | --- | --- | --- |
 | URL na eventuele merge | /interactief/voyager-1/ | /interactief/voyager-1-v2/ |
 | Bestanden | Eén HTML-bestand | HTML, CSS, physics.js, visualisatie.js en METHODE.md |
-| Fysica en brondata | Bestaand model | Dezelfde waarden, algoritmen en uitkomsten |
+| Fysica en brondata | Bestaand model | Dezelfde brondata en modellen, met herstelde aansluiting rond 2400 |
+| Overgang naar verre toekomst | Sprong van circa 8,60 miljoen km | Sluit aan op het werkelijke laatste tabelpunt; eerdere afstanden blijven gelijk |
 | Berekende mijlpalen en signaalreizen | In bedieningsscript | Ondergebracht in physics.js |
 | Uiterlijk | Zwart/wit/groen, licht/donker | Behouden, met enkele grotere aanraakdoelen en extra bedieningstekst |
 | Lettertype | Montserrat indien lokaal aanwezig, anders fallback | Dezelfde fontkeuze; geen externe downloads |

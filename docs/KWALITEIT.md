@@ -1,24 +1,28 @@
 # Kwaliteit, testresultaten en openstaande controles
 
-Gecontroleerd op 17 november 2026, vóór publicatie of samenvoeging.
+Bijgewerkt op 17 november 2026 voor het afzonderlijke herstel van de modelovergang rond 2400.
 
 ## Uitgevoerde tests
 
 | Controle | Resultaat |
 | --- | --- |
 | Oorspronkelijke Voyager Git-blob | Exact gelijk aan 971558a2a0b6ee0aa1f87a12ec4c1b896a46246c |
-| Numerieke regressie tegen oorspronkelijke scripts | 16.005 assertions geslaagd |
+| Numerieke controles, inclusief de herstelde modelovergang | 16.015 assertions geslaagd |
 | DOM/canvas-smoketest en scheduler | 15 aanvullende assertions geslaagd |
 | Berichtvalidatie host en kind | 19 aanvullende assertions geslaagd |
-| Totaal JavaScript | 16.039 assertions geslaagd met GJS/SpiderMonkey |
+| Totaal JavaScript | 16.049 assertions geslaagd met GJS/SpiderMonkey |
 | Structuur, lokale verwijzingen en IDs | Geslaagd: 6 HTML-pagina’s, Markdown-links, IDs en UI-verwijzingen |
 
 De numerieke regressie gebruikt de oorspronkelijke inline code rechtstreeks als referentie, niet
 een opnieuw geïmplementeerde versie. Er worden 210 tijdstippen gecontroleerd, inclusief lancering,
 passages, de aansluiting in 1982, de lichtdag, de verre toekomst en 200 logaritmische stappen.
-Planeten, Voyager en alle 15 sterren worden per coördinaat vergeleken. De uitkomsten zijn exact
-gelijk binnen dezelfde JavaScript-engine. Dat bewijst behoud van het model, niet de juistheid
-van de oorspronkelijke aannames.
+Planeet- en sterposities blijven over die hele reeks exact gelijk. De positie van Voyager
+blijft vóór de herstelde overgang exact gelijk binnen dezelfde JavaScript-engine. Na de overgang
+controleren de tests de bedoelde correctie en de daarvan afgeleide uitkomsten. Aanvullende
+continuïteitstests vergelijken punten één milliseconde, één seconde en één dag aan beide kanten.
+Een onafhankelijke numerieke voortzetting controleert de langetermijnformule tot 100 jaar na
+de overgang. De nieuwe continuïteitstest faalt met de oude code en slaagt na het herstel.
+Dit bewijst de gerichte reparatie, niet de juistheid van alle oorspronkelijke modelaannames.
 
 Aanvullende tests controleren ankerpunten, lichtdagkalibratie (tolerantie 1e-7 AE, circa 15 km),
 afnemende snelheid, Oortgrenzen, tijdlijntransformaties en signaalonderschepping. Voor een signaal
@@ -42,14 +46,18 @@ gjs tests/run-gjs.js
 ```
 
 De GitHub Actions-workflow voert de Node-, Python- en browsercontroles uit bij pull requests en pushes
-naar main. De workflow heeft alleen leesrechten en publiceert geen website. De workflow is in
-deze omgeving nog niet op GitHub uitgevoerd.
+naar main. De workflow heeft alleen leesrechten en publiceert geen website. Voor de oorspronkelijke
+v2-basis op commit `be81539ea512b204b108c277346e0ae0fac6b417` zijn beide jobs
+[op GitHub geslaagd](https://github.com/Scientias-news/scientias-news.github.io/actions/runs/44126549894).
+Voor deze afzonderlijke correctie zijn de JavaScript- en Python-controles lokaal herhaald.
+De Node- en browsercontroles moeten opnieuw op de nieuwe pull request draaien.
 
-## Echte browsercontrole, nog uit te voeren
+## Browsercontrole
 
-Een lokale browser kon in de uitvoeromgeving niet worden gestart. De browserinterface weigerde
-de lokale bestands-URL. Daarom zijn visuele regressie, echte touchgebaren en schermlezerervaring
-nog niet bevestigd. Geen van de onderstaande browserchecks wordt als geslaagd gepresenteerd.
+Een lokale browser kon in de uitvoeromgeving niet worden gestart. De bestaande automatische
+browsercontroles zijn inmiddels wel in GitHub Actions geslaagd voor de oorspronkelijke v2-basis.
+Ze zijn nog niet opnieuw uitgevoerd voor de correctie rond 2400. Echte touchgebaren en
+schermlezerervaring blijven afzonderlijke handmatige controles.
 
 Er staat een reproduceerbaar Playwright-script in `tests/browser.cjs`. Installeer desgewenst
 uitsluitend voor ontwikkeling, vanaf de repositoryroot:
@@ -79,7 +87,6 @@ kleine aanraakdoelen; de grote vorige/volgende-knoppen en mijlpaalregels zijn he
 
 ## Openstaande inhoudelijke punten
 
-- Modelovergang rond januari 2400 geeft een bestaande sprong van circa 8,60 miljoen km.
 - Planeetmodel is vereenvoudigd en wordt buiten zijn geldigheidsperiode doorgetrokken.
 - ‘Dichtstbijzijnde ster’ zoekt alleen in een selectie van 15 sterren zonder de zon.
 - Geen galactische zwaartekracht of foutvoortplanting; geen volledige herkomst per sterrecord.
@@ -87,12 +94,12 @@ kleine aanraakdoelen; de grote vorige/volgende-knoppen en mijlpaalregels zijn he
 - De historische detailteksten, Oortgrensformuleringen en actuele instrumentstatus vragen inhoudelijke controle.
 
 Zie [METHODE.md](../interactief/voyager-1-v2/METHODE.md) voor de onderbouwing.
-Voor deze refactoring zijn geen berekeningen of historische teksten aangepast.
+Historische teksten zijn niet aangepast. Alleen de aansluiting op de langetermijnformule is
+numeriek hersteld; zie [FIX_2400.md](FIX_2400.md).
 
 ## Openstaande integratie en publicatie
 
-GitHub-schrijven is door de automatische toestemmingscontrole geblokkeerd. Er is lokaal een branch
-en commit voorbereid maar geen remote branch of pull request aangemaakt. Er is niets gemerged.
-Ook is geen WordPress-code geïnstalleerd. De voorbereidende PR-tekst staat in
-[PULL_REQUEST.md](PULL_REQUEST.md). De echte WordPress-omgeving moet vóór ingebruikname
+De oorspronkelijke v2-basis staat inmiddels op main. Dit herstel is afzonderlijk voorbereid op
+`codex/fix-voyager-2400-jump` en mag pas na review worden samengevoegd. Er is vanuit deze
+werkzaamheden geen WordPress-code geïnstalleerd. De echte WordPress-omgeving moet vóór ingebruikname
 worden gecontroleerd op scriptfilters, CSP, lazy loading, hoogte en scrollgedrag.

@@ -17,13 +17,48 @@ globalThis.runScientiasTests = function (read, log) {
   new Function(read('interactief/voyager-1-v2/physics.js'))();
   const m = globalThis.ScientiasVoyagerPhysics, r = reference;
   const vectorNear = (a, b, tolerance, message) => a.forEach((value, i) => near(value, b[i], tolerance, message + '[' + i + ']'));
-  // Exact regression over the complete supported timeline, with extra join points.
+  // The last integration sample is later than the requested nominal table end.
+  const tableEndYear = m.TAB_T0 + (m.TAB.length - 1) * m.TAB_STEP;
+  const tableEndTime = m.J2000 + tableEndYear * m.YEAR_MS;
+  const endpoint = m.TAB[m.TAB.length - 1];
+  near(m.sAt(tableEndTime), endpoint, 1e-10, 'Extrapolation starts at the actual last sample');
+  for (const spanMs of [1, 1000, m.DAY_MS]) {
+    const before = m.sAt(tableEndTime - spanMs), after = m.sAt(tableEndTime + spanMs);
+    const travel = m.dsdt(endpoint) * (2 * spanMs / m.YEAR_MS);
+    assert(after > before, 'Forward motion across transition');
+    near(after - before, travel, travel * 0.001 + 1e-9, 'No jump across transition');
+  }
+  // Independent continuation of the ODE: catches an epoch offset without
+  // repeating the implementation of the asymptotic approximation.
+  function integrateForward(years) {
+    let s = endpoint;
+    const steps = Math.ceil(years * 48), h = years / steps;
+    for (let i = 0; i < steps; i++) {
+      const a = m.dsdt(s), b = m.dsdt(s + h * a / 2);
+      const c = m.dsdt(s + h * b / 2), d = m.dsdt(s + h * c);
+      s += h * (a + 2 * b + 2 * c + d) / 6;
+    }
+    return s;
+  }
+  for (const years of [1 / 365.25, 1, 100]) {
+    near(m.sAt(tableEndTime + years * m.YEAR_MS), integrateForward(years), 0.01,
+      'Asymptotic continuation agrees with independent integration');
+  }
+  // Exact Voyager regression before the repaired transition; unchanged planets
+  // and stars across the entire timeline. Only the intended future offset changes.
   const dates = [m.T_LAUNCH, m.T_JUP, m.T_SAT, m.T_JOIN - 1, m.T_JOIN, m.T_JOIN + 1,
     m.T_LD, Date.UTC(2400, 0, 1), m.T_MAX];
   for (let i = 0; i <= 200; i++) dates.push(m.T_LAUNCH + (10 ** (i / 200 * 6) - 1) * m.YEAR_MS);
   for (const t of dates) {
-    vectorNear(m.voyagerPos(t), r.voyagerPos(t), 0, 'Voyager unchanged at ' + t);
-    near(m.sAt(t), r.sAt(t), 0, 'Radial integration unchanged');
+    if (t < tableEndTime) {
+      vectorNear(m.voyagerPos(t), r.voyagerPos(t), 0, 'Voyager unchanged at ' + t);
+      near(m.sAt(t), r.sAt(t), 0, 'Radial integration unchanged');
+    } else {
+      const shift = r.sAt(t) - m.sAt(t);
+      assert(shift > 0.05 && shift < 0.06, 'Only the known future position offset is removed');
+      vectorNear(m.voyagerPos(t), m.v3.add(m.v3.mul(m.V_DIR, m.sAt(t)), m.N_OFF), 0,
+        'Future position retains the original direction and offset');
+    }
     m.PLANETS.forEach((p, i) => vectorNear(m.planetPos(p, t), r.planetPos(r.PLANETS[i], t), 0, 'Planet unchanged'));
     m.STARS.forEach((s, i) => vectorNear(m.starPos(s, t), r.starPos(r.STARS[i], t), 0, 'Star unchanged'));
     vectorNear(m.earthPos(t), r.earthPos(t), 0, 'Earth unchanged');
@@ -36,18 +71,30 @@ globalThis.runScientiasTests = function (read, log) {
   assert(m.dsdt(100) > m.dsdt(1000), 'Solar slowing preserved');
   near(m.dsdt(1e12), m.V_INF, 1e-10, 'Asymptotic velocity');
   for (const radius of [m.OORT_IN, m.OORT_OUT]) {
-    near(m.whenAt(radius), r.whenAt(radius), 0, 'Oort crossing unchanged');
+    if (m.whenAt(radius) < tableEndTime) near(m.whenAt(radius), r.whenAt(radius), 0, 'Early Oort crossing unchanged');
+    else assert(m.whenAt(radius) > r.whenAt(radius), 'Future Oort crossing reflects corrected position');
     near(m.v3.len(m.voyagerPos(m.whenAt(radius))), radius, 1e-7, 'Oort crossing radius');
   }
   for (const name of ['Gliese 445', 'Proxima Centauri']) {
     const index = m.STARS.findIndex((s) => s.name === name);
-    vectorNear(m.closest(m.STARS[index]), r.closest(r.STARS[index]), 0, 'Closest encounter unchanged');
-    near(m.whenCloserThanSun(m.STARS[index]), r.whenCloserThanSun(r.STARS[index]), 0, 'Sun comparison unchanged');
+    const [distance, time] = m.closest(m.STARS[index]);
+    near(distance, m.v3.len(m.v3.sub(m.starPos(m.STARS[index], time), m.voyagerPos(time))), 1e-9, 'Encounter distance matches corrected positions');
+    for (const offset of [-0.08, 0.08]) {
+      const t = time + offset * m.YEAR_MS;
+      assert(distance <= m.v3.len(m.v3.sub(m.starPos(m.STARS[index], t), m.voyagerPos(t))) + 1e-6,
+        'Encounter is locally minimal at search resolution');
+    }
+    const crossing = m.whenCloserThanSun(m.STARS[index]);
+    const difference = (t) => m.v3.len(m.v3.sub(m.starPos(m.STARS[index], t), m.voyagerPos(t))) - m.v3.len(m.voyagerPos(t));
+    if (crossing < m.T_MAX) assert(difference(crossing - m.DAY_MS) > 0 && difference(crossing + m.DAY_MS) < 0,
+      'Sun-distance crossing uses corrected positions');
+    else assert(difference(crossing) > 0, 'No crossing claimed when star remains farther than Sun');
   }
   for (const fraction of [0, 0.1, 0.5, 1]) near(m.tToFrac(m.fracToT(fraction)), fraction, 1e-12, 'Timeline inverse');
   for (const t of [Date.UTC(1990, 0, 1), m.T_LD, m.T_MAX]) {
     const signal = m.makeSignal(t, '  Hallo  '), old = r.makeSignal(t, '  Hallo  ');
-    ['te', 'ta', 'tr'].forEach((key) => near(signal[key], old[key], 0, 'Signal time unchanged'));
+    if (t < tableEndTime) ['te', 'ta', 'tr'].forEach((key) => near(signal[key], old[key], 0, 'Early signal time unchanged'));
+    else assert(signal.ta < old.ta && signal.tr < old.tr, 'Future signal times reflect corrected distance');
     assert(signal.ta > signal.te && signal.tr > signal.ta, 'Signal travels forward in time');
     const outDistance = m.v3.len(m.v3.sub(m.voyagerPos(signal.ta), m.earthPos(signal.te)));
     // At +1 million years, millisecond timestamps lose sub-millisecond precision.

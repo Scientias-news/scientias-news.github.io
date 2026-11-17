@@ -68,5 +68,6 @@ Een gepauzeerde kaart tekent alleen na bediening of tijdens het afronden van een
 Zie [METHODE.md](../interactief/voyager-1-v2/METHODE.md) voor modellen en bronnen.
 De belangrijkste bevindingen zijn de overgangssprong rond 2400, de beperkte geldigheid van
 de planeetbenadering, de selectie van slechts 15 sterren en het ontbreken van de galactische zwaartekracht.
-De oorspronkelijke teksten en numerieke modellen zijn behouden. De website vraagt daarom nog
+De oorspronkelijke refactoring behield teksten en numerieke modellen. De overgangssprong
+is vervolgens afzonderlijk [hersteld in v2](FIX_2400.md). De website vraagt nog
 om wetenschappelijke en redactionele controle voordat v2 de voorkeursversie kan worden.

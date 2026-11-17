@@ -109,13 +109,16 @@ const TAB = (() => {
   for (let i = i0 + 1; i < n; i++) arr[i] = rk(arr[i - 1], TAB_STEP);
   return arr;
 })();
+// The ceil above may place the last sample beyond the nominal TAB_T1.
+// Continue from that sample's actual epoch, so the two branches meet.
+const TAB_T_END = TAB_T0 + (TAB.length - 1) * TAB_STEP;
 function sAt(tMs) {
   const ty = (tMs - J2000) / YEAR_MS;
   const x = (ty - TAB_T0) / TAB_STEP;
   if (x >= TAB.length - 1) {
     // verre toekomst: constante snelheid v∞ plus de (kleine) logaritmische correctie
     const sEnd = TAB[TAB.length - 1];
-    const dt = ty - TAB_T1;
+    const dt = ty - TAB_T_END;
     const s1 = sEnd + V_INF * dt;
     return s1 + (GM / (V_INF * V_INF)) * Math.log(Math.max(1, s1 / sEnd));
   }
@@ -234,7 +237,7 @@ const fracToT = (f) => T_LAUNCH + (Math.pow(10, f * LOGMAX) - 1) * YEAR_MS;
 const api = Object.freeze({
   AU_KM, C_KMS, LD_AU, LY_AU, DAY_MS, YEAR_MS, J2000, GM, KMS_AUYR, D2R, EPS, v3, eqToEcl,
   radecVec, PLANETS, EARTH, JUPITER, SATURN, planetPos, earthPos, T_LAUNCH, T_JUP, T_SAT, T_JOIN,
-  T_LD, V_DIR, V_INF, N_OFF, S_LD, SAT_AT_FLYBY, B2, TAB_STEP, TAB_T0, TAB_T1, TAB, sAt, dsdt,
+  T_LD, V_DIR, V_INF, N_OFF, S_LD, SAT_AT_FLYBY, B2, TAB_STEP, TAB_T0, TAB_T1, TAB_T_END, TAB, sAt, dsdt,
   voyagerPos, STARS, STAR_DATA, starPos, C_AU_MS, T_MAX, T_JOIN_MS, yearOf, tOfYear, distEarth,
   OORT_IN, OORT_OUT, closest, whenAt, whenCloserThanSun, makeSignal, LOGMAX, tToFrac, fracToT
 });
