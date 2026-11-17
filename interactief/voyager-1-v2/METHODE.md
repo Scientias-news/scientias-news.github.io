@@ -3,7 +3,8 @@
 Peildatum van deze verantwoording: 17 november 2026.
 Ontwerp en oorspronkelijke kaart: Andrei Stiru / Scientias.
 Referentie: `interactief/voyager-1/index.html`, commit `e812c6ef0acc6da12fad78d56745bee820248b51`.
-V2 ordent dezelfde modellen in aparte bestanden. Het is een illustratief rekenmodel en geen live NASA-telemetrie.
+V2 ordent dezelfde modellen in aparte bestanden en herstelt de aansluiting op de langetermijnformule.
+Het is een illustratief rekenmodel en geen live NASA-telemetrie.
 De aanduiding Live betekent dat het model met de klok van het apparaat meeloopt.
 
 ## Eenheden en coördinaten
@@ -53,10 +54,16 @@ Door tabelinterpolatie ligt het resultaat op dat moment circa 10,7 km onder de i
 Dit verschil is klein ten opzichte van de modelonzekerheid en is in v2 behouden.
 
 Na de tabel gebruikt `sAt` een constante asymptotische snelheid plus een logaritmische correctie.
-Er zit een bestaand aansluitprobleem in: het laatste roosterpunt ligt niet precies op `TAB_T1`.
-Rond 10 januari 2400, 11:37:30 UTC springt `sAt` ongeveer 0,0575 AE vooruit, circa 8,60 miljoen km.
-De refactoring repareert dit niet: dat zou de wetenschappelijke uitkomsten veranderen.
-Een vervolgwijziging moet de werkelijke eindtijd van het rooster gebruiken en apart worden beoordeeld.
+Het laatste roosterpunt ligt door afronding van het aantal stappen niet precies op `TAB_T1`.
+De oorspronkelijke formule gebruikte wel dat nominale tijdstip, waardoor rond 10 januari 2400,
+11:37:30 UTC een sprong van ongeveer 0,0575 AE ontstond, circa 8,60 miljoen km.
+In v2 sluit de vervolgformule nu aan op de werkelijke roostertijd
+`TAB_T_END = TAB_T0 + (TAB.length - 1) * TAB_STEP`. Daar is de verstreken tijd nul en
+is de extrapolatie gelijk aan het laatste tabelpunt. De integratie vóór dat moment, de
+lichtdagkalibratie, de richting en de asymptotische snelheid blijven ongewijzigd.
+Na die overgang veranderen de positie en daarvan afgeleide ontmoetings- en signaaltijden iets.
+Dit herstelt de continuïteit van de positie; het maakt de benadering niet tot een exact baanmodel.
+Zie [de herstelverantwoording](../../docs/FIX_2400.md) voor tests en afbakening.
 
 ## Sterren en ontmoetingen
 
