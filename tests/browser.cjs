@@ -31,6 +31,23 @@ const base = 'http://127.0.0.1:8001';
       await page.screenshot({ path: 'test-results/v2-' + width + '.png', fullPage: true });
       await context.close();
     }
+    // Generic checks for every published element: loads all files, no errors, no overflow.
+    const elements = (await fs.readdir(__dirname + '/../interactief', { withFileTypes: true }))
+      .filter((d) => d.isDirectory() && !d.name.startsWith('_')).map((d) => d.name);
+    for (const name of elements) {
+      for (const width of [320, 1280]) {
+        const generic = await browser.newPage({ viewport: { width, height: 900 } });
+        const problems = [];
+        generic.on('pageerror', (e) => problems.push(e.message));
+        generic.on('requestfailed', (r) => problems.push('failed ' + r.url()));
+        generic.on('response', (r) => { if (r.status() >= 400) problems.push(r.status() + ' ' + r.url()); });
+        await generic.goto(base + '/interactief/' + name + '/', { waitUntil: 'networkidle' });
+        assert(await generic.evaluate(() => document.documentElement.scrollWidth <= innerWidth), name + ': horizontal overflow at ' + width);
+        assert.deepEqual(problems, [], name + ' at ' + width);
+        await generic.screenshot({ path: 'test-results/element-' + name + '-' + width + '.png', fullPage: true });
+        await generic.close();
+      }
+    }
     // Compare the actual initial canvas with the original at a frozen clock.
     const context = await browser.newContext({ viewport: { width: 1280, height: 1000 } });
     await context.addInitScript(() => { Date.now = () => Date.UTC(2026, 10, 17, 12); });
@@ -74,6 +91,6 @@ const base = 'http://127.0.0.1:8001';
     assert.equal(await embeds.locator('iframe').count(), 2);
     await embeds.screenshot({ path: 'test-results/iframe-mobile.png', fullPage: true });
     assert.deepEqual(errors, [], 'No browser JavaScript errors');
-    console.log('Browser checks passed: desktop/tablet/mobile, initial canvas, reduced motion, keyboard, signals and two iframes.');
+    console.log('Browser checks passed: ' + elements.length + ' elements generically, desktop/tablet/mobile, initial canvas, reduced motion, keyboard, signals and two iframes.');
   } finally { await browser.close(); }
 })().catch((error) => { console.error(error); process.exitCode = 1; });

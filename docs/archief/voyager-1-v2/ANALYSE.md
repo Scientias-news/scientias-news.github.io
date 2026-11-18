@@ -66,7 +66,7 @@ Een gepauzeerde kaart tekent alleen na bediening of tijdens het afronden van een
 
 ## Inhoudelijke bevindingen, niet stilzwijgend aangepast
 
-Zie [METHODE.md](../interactief/voyager-1-v2/METHODE.md) voor modellen en bronnen.
+Zie [METHODE.md](../../../interactief/voyager-1-v2/METHODE.md) voor modellen en bronnen.
 De belangrijkste bevindingen zijn de overgangssprong rond 2400, de beperkte geldigheid van
 de planeetbenadering, de selectie van slechts 15 sterren en het ontbreken van de galactische zwaartekracht.
 De oorspronkelijke refactoring behield teksten en numerieke modellen. De overgangssprong

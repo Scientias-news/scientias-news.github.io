@@ -11,8 +11,7 @@ De voorbeeldbestanden werken direct zonder installatie of buildproces.
 | visualisatie.js | Bediening en uitvoer |
 | METHODE.md | Bronnen, aannames, eenheden en beperkingen |
 
-`script.js` is een oud, niet meer geladen voorbeeldbestand. Nieuwe elementen gebruiken `visualisatie.js`.
-Je kunt dat ongebruikte bestand in je eigen kopie weglaten.
+Gedeelde bestanden komen uit `../../assets/v1/`. Wijzig die nooit; zie de README in de hoofdmap.
 
 Lees [de redactiehandleiding](../../docs/REDACTIE.md) voor de stappen in GitHub en de publicatiecontrole.
 Gebruik [de WordPress-handleiding](../../docs/WORDPRESS.md) voor de iframecode.

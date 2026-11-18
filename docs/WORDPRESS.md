@@ -8,7 +8,7 @@ De bestaande Voyager-embed kan ongewijzigd blijven. Gebruik v2 pas na redactione
 | Plek | Bestand/onderdeel | Verantwoordelijkheid |
 | --- | --- | --- |
 | GitHub Pages | Visualisatie met eigen HTML/CSS/JS | Inhoud en bediening |
-| GitHub Pages | assets/embed-child.js | Eigen inhoudshoogte meten en antwoorden aan vertrouwde host |
+| GitHub Pages | assets/v1/embed-child.js | Eigen inhoudshoogte meten en antwoorden aan vertrouwde host |
 | Scientias.nl, eenmalig | wordpress-parent.js | Frames herkennen, veilige handshake en iframehoogte bijstellen |
 | WordPress-artikel | iframe in Aangepaste HTML | Specifieke visualisatie en beschrijvende titel kiezen |
 

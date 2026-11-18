@@ -212,7 +212,7 @@ globalThis.runScientiasTests = function (read, log) {
   const embedded = Object.assign(events(), { parent, scrollY: 0 });
   const parentMessages = []; parent.postMessage = (data, origin) => parentMessages.push({ data, origin });
   const body = Object.assign(new Element(), { children: [] });
-  new Function('window', 'document', 'location', 'ResizeObserver', 'MutationObserver', 'requestAnimationFrame', 'getComputedStyle', read('assets/embed-child.js'))(embedded, { body }, { hostname: 'scientias-news.github.io' }, RO, MO, raf, () => ({ marginBottom: '0' }));
+  new Function('window', 'document', 'location', 'ResizeObserver', 'MutationObserver', 'requestAnimationFrame', 'getComputedStyle', read('assets/v1/embed-child.js'))(embedded, { body }, { hostname: 'scientias-news.github.io' }, RO, MO, raf, () => ({ marginBottom: '0' }));
   const init = { type: 'scientias:embed:init', version: 1, id: 'one' };
   embedded.fire('message', { data: init, origin: 'https://evil.example', source: parent }); flush();
   assert(parentMessages.length === 0, 'Child rejects hostile parent origin');
