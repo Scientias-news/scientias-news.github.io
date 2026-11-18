@@ -63,7 +63,7 @@ is de extrapolatie gelijk aan het laatste tabelpunt. De integratie vóór dat mo
 lichtdagkalibratie, de richting en de asymptotische snelheid blijven ongewijzigd.
 Na die overgang veranderen de positie en daarvan afgeleide ontmoetings- en signaaltijden iets.
 Dit herstelt de continuïteit van de positie; het maakt de benadering niet tot een exact baanmodel.
-Zie [de herstelverantwoording](../../docs/FIX_2400.md) voor tests en afbakening.
+Zie [de herstelverantwoording](../../docs/archief/voyager-1-v2/FIX_2400.md) voor tests en afbakening.
 
 ## Sterren en ontmoetingen
 

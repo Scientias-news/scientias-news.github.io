@@ -20,7 +20,7 @@ git push -u origin codex/voyager-v2-infrastructuur
 Open daarna op GitHub een **draft pull request** naar `main` en gebruik de tekst uit
 [PULL_REQUEST.md](PULL_REQUEST.md). Laat GitHub Actions draaien en bekijk de screenshots
 in het browsercontrole-artifact. Beoordeel de nog openstaande punten uit
-[KWALITEIT.md](KWALITEIT.md). Voeg geen automatische merge toe.
+[KWALITEIT.md](../../KWALITEIT.md). Voeg geen automatische merge toe.
 
 ## Vanuit een bestaande volledige clone
 
@@ -45,6 +45,6 @@ Bekijk daarna in je eigen browser:
 - Origineel: niet meer gepubliceerd; open zo nodig `tests/fixtures/voyager-1-origineel.html.txt` lokaal als HTML-bestand
 - Versie 2: `http://127.0.0.1:8001/interactief/voyager-1-v2/`
 
-Voor een test met twee origins en automatische iframehoogte volg je [WORDPRESS.md](WORDPRESS.md).
+Voor een test met twee origins en automatische iframehoogte volg je [WORDPRESS.md](../../WORDPRESS.md).
 De ZIP publiceren is niet nodig om het werk te beoordelen. Installeer WordPress-code alleen na
 afzonderlijke controle door de beheerder. Laat de redactie beslissen of en wanneer v2 de voorkeursversie wordt.

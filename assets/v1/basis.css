@@ -1,4 +1,4 @@
-/* Opt-in foundation. Existing assets/style.css stays unchanged. */
+/* Opt-in foundation. Frozen v1: never edit; put changes in assets/v2/. */
 :root {
   --scientias-green: #2c5941;
   --scientias-green-light: #4fa36f;

@@ -22,7 +22,7 @@ De toegevoegde GitHub-workflow is nog niet op GitHub gedraaid.
 
 Bekende inhoudelijke punten zijn afzonderlijk gedocumenteerd, met name een bestaande sprong bij de
 modelovergang rond 2400, planeetposities buiten het geldigheidsinterval en de beperkte sterselectie.
-Deze PR corrigeert die modellen niet. Controleer [KWALITEIT.md](KWALITEIT.md) en
-[METHODE.md](../interactief/voyager-1-v2/METHODE.md) vóór redactionele goedkeuring.
+Deze PR corrigeert die modellen niet. Controleer [KWALITEIT.md](../../KWALITEIT.md) en
+[METHODE.md](../../../interactief/voyager-1-v2/METHODE.md) vóór redactionele goedkeuring.
 
 Doelbranch: `main`. Werkbranch: `codex/voyager-v2-infrastructuur`. Niet automatisch samenvoegen.

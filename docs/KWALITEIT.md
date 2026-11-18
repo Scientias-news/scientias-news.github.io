@@ -95,7 +95,7 @@ kleine aanraakdoelen; de grote vorige/volgende-knoppen en mijlpaalregels zijn he
 
 Zie [METHODE.md](../interactief/voyager-1-v2/METHODE.md) voor de onderbouwing.
 Historische teksten zijn niet aangepast. Alleen de aansluiting op de langetermijnformule is
-numeriek hersteld; zie [FIX_2400.md](FIX_2400.md).
+numeriek hersteld; zie [FIX_2400.md](archief/voyager-1-v2/FIX_2400.md).
 
 ## Openstaande integratie en publicatie
 

@@ -56,13 +56,13 @@ for path in pages:
     for target in page.aria:
         assert target in page.ids, (path, target)
     if path.parent.name == 'voyager-1-v2':
-        assert page.scripts == ['physics.js', 'visualisatie.js', '../../assets/embed-child.js']
+        assert page.scripts == ['physics.js', 'visualisatie.js', '../../assets/v1/embed-child.js']
         assert '<style>' not in path.read_text() and '<script>' not in path.read_text()
         code = (path.parent / 'visualisatie.js').read_text()
         for target in re.findall(r"\$\('([^']+)'\)", code):
             assert target in page.ids, f'Missing UI element {target}'
     if path.parent.name == 'fijnstof-europese-steden':
-        assert page.scripts == ['data.js', 'visualisatie.js', '../../assets/embed-child.js']
+        assert page.scripts == ['data.js', 'visualisatie.js', '../../assets/v1/embed-child.js']
         assert '<style>' not in path.read_text() and '<script>' not in path.read_text()
         for svg in ('kaart-europa.svg', 'kaart-benelux.svg'):
             assert ET.parse(path.parent / svg).getroot().tag == '{http://www.w3.org/2000/svg}svg'
@@ -76,4 +76,42 @@ for path in sources('*.md'):
             continue
         assert (path.parent / unquote(url.path)).resolve().exists(), (path, target)
 
+def blob(data):
+    return hashlib.sha1(b'blob ' + str(len(data)).encode() + b'\0' + data).hexdigest()
+
+# Shared files that live embeds load. A published version is frozen: put changes in a
+# new folder (assets/v2/) instead, so old articles never change unnoticed.
+FROZEN = {
+    'assets/v1/basis.css': '2780c167fb840565fdc8efc23f3673475751347c',
+    'assets/v1/embed-child.js': '433e63e573c5819b06392f9f9a5967217d02df01',
+    'assets/v1/style.css': 'a094e2d9976aeb99d3eadcf64b7b9ca54ac20810',
+}
+for name, expected in FROZEN.items():
+    assert blob((ROOT / name).read_bytes()) == expected, f'{name} is frozen; create assets/v2/ instead'
+assert sorted(str(p.relative_to(ROOT)) for p in (ROOT / 'assets/v1').iterdir()) == sorted(FROZEN), 'assets/v1 is frozen'
+
+# Every published element lives directly under interactief/ and is self-contained.
+# Elements deliberately left off the overview page go in NIET_IN_INDEX.
+NIET_IN_INDEX = set()
+elements = sorted(p for p in (ROOT / 'interactief').iterdir() if p.is_dir() and not p.name.startswith('_'))
+overview = Page(); overview.feed((ROOT / 'index.html').read_text())
+linked = {urlsplit(r).path.strip('/') for r in overview.references}
+for element in elements:
+    html = element / 'index.html'
+    assert html.exists(), f'{element.name} needs its own index.html'
+    text = html.read_text()
+    assert '<html lang="nl">' in text and '<title>' in text and 'name="viewport"' in text, f'{element.name}: lang, title and viewport'
+    page = Page(); page.feed(text)
+    for target in page.scripts + page.references:
+        url = urlsplit(target)
+        if not (url.scheme or url.netloc):
+            assert '/assets/' not in url.path or re.match(r'(\.\./)+assets/v\d+/', url.path), f'{element.name}: shared files only from assets/vN/ ({target})'
+    for target in page.scripts:
+        assert not urlsplit(target).netloc, f'{element.name}: no external scripts ({target})'
+    if element.name not in NIET_IN_INDEX:
+        assert f'interactief/{element.name}' in linked, f'{element.name} is missing from index.html (or add it to NIET_IN_INDEX in tests/structure.py)'
+for name in NIET_IN_INDEX:
+    assert (ROOT / 'interactief' / name).is_dir(), f'NIET_IN_INDEX lists unknown element {name}'
+
+print(f'Elements passed: {len(elements)} elements, overview links and frozen assets verified.')
 print(f'Structure passed: {len(pages)} HTML pages, Markdown links, UI references and original Git blob verified.')

@@ -25,8 +25,8 @@ Hernoem een gepubliceerde map niet: oudere artikelen blijven naar die URL verwij
 8. Plaats de iframe in het artikel met [de WordPress-handleiding](WORDPRESS.md).
    Controleer de voorbeeldweergave van het artikel op mobiel voordat het artikel live gaat.
 
-Bij een ingrijpende wijziging aan een bestaande visualisatie maak je een nieuwe map, bijvoorbeeld
-`maanfasen-v2`. Laat de bestaande URL werken. Bij Voyager is `voyager-1-v2/` de voorkeursversie; de oorspronkelijke
+Verandert een wijziging de betekenis van een al geplaatste iframe, maak dan een nieuwe map, bijvoorbeeld
+`maanfasen-v2`. Kleine correcties mogen in de bestaande map. Laat de bestaande URL altijd werken. Bij Voyager is `voyager-1-v2/` de voorkeursversie; de oorspronkelijke
 `voyager-1/` is verwijderd en blijft alleen als testreferentie bewaard in `tests/fixtures/voyager-1-origineel.html.txt`.
 
 ## Bestanden in je map
@@ -39,8 +39,10 @@ Bij een ingrijpende wijziging aan een bestaande visualisatie maak je een nieuwe 
 | visualisatie.js | Knoppen, tekenen en toestand | Technische collega |
 | METHODE.md | Bronnen, peildatum, aannames en beperkingen | Redacteur en deskundige |
 
-Je hebt geen koppeling met de publieksindex nodig om te publiceren. Voeg alleen na een bewuste
-keuze een overzichtslink toe. Deel `assets/basis.css` en `assets/embed-child.js` via relatieve paden.
+Voeg een tegel toe aan de publieksindex (`index.html`); de tests controleren dat. Moet een element
+bewust niet op de overzichtspagina, zet de mapnaam dan in `NIET_IN_INDEX` in `tests/structure.py`.
+Laad gedeelde bestanden via relatieve paden uit `assets/v1/`, bijvoorbeeld `../../assets/v1/basis.css`.
+Wijzig bestanden in `assets/v1/` nooit: oude artikelen laden ze ook. Verbeteringen komen in `assets/v2/`.
 Voeg specifieke code nooit aan een andere visualisatiemap toe. De browser isoleert elke iframe
 van de artikelpagina en van andere iframes.
 
@@ -50,6 +52,7 @@ van de artikelpagina en van andere iframes.
 - [ ] Bron, peildatum, eenheden en beperkingen staan in de visualisatie en in METHODE.md.
 - [ ] Een inhoudelijk controleur heeft modellen, aannames en relevante uitkomsten bekeken.
 - [ ] Een nieuwe mapnaam is blijvend en bevat geen bestaande bestanden.
+- [ ] Het element staat op de publieksindex, of staat bewust in `NIET_IN_INDEX`.
 - [ ] Desktop, tablet en smalle telefoon tonen alle bediening zonder horizontaal pagina-scrollen.
 - [ ] Tab, Enter, spatie en pijltjes werken logisch; de focus blijft zichtbaar.
 - [ ] Informatie is ook als tekst of tabel beschikbaar en hangt niet alleen van kleur af.
