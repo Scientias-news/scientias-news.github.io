@@ -2,7 +2,7 @@
 
 Peildatum van deze verantwoording: 17 november 2026.
 Ontwerp en oorspronkelijke kaart: Andrei Stiru / Scientias.
-Referentie: `interactief/voyager-1/index.html`, commit `e812c6ef0acc6da12fad78d56745bee820248b51`.
+Referentie: `interactief/voyager-1/index.html` (nu bewaard als `tests/fixtures/voyager-1-origineel.html.txt`), commit `e812c6ef0acc6da12fad78d56745bee820248b51`.
 V2 ordent dezelfde modellen in aparte bestanden en herstelt de aansluiting op de langetermijnformule.
 Het is een illustratief rekenmodel en geen live NASA-telemetrie.
 De aanduiding Live betekent dat het model met de klok van het apparaat meeloopt.

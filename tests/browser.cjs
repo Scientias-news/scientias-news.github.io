@@ -34,8 +34,12 @@ const base = 'http://127.0.0.1:8001';
     // Compare the actual initial canvas with the original at a frozen clock.
     const context = await browser.newContext({ viewport: { width: 1280, height: 1000 } });
     await context.addInitScript(() => { Date.now = () => Date.UTC(2026, 10, 17, 12); });
+    // The original is no longer published; serve the test fixture as HTML.
+    const fixture = await fs.readFile(__dirname + '/fixtures/voyager-1-origineel.html.txt');
+    await context.route(base + '/interactief/voyager-1-origineel/**', (route) =>
+      route.fulfill({ status: 200, contentType: 'text/html; charset=utf-8', body: fixture }));
     const original = await context.newPage(), updated = await context.newPage();
-    for (const [page, path] of [[original, 'voyager-1'], [updated, 'voyager-1-v2']]) {
+    for (const [page, path] of [[original, 'voyager-1-origineel'], [updated, 'voyager-1-v2']]) {
       await page.goto(base + '/interactief/' + path + '/#licht');
       await page.waitForFunction(() => document.querySelector('#dKm').textContent !== '…');
     }

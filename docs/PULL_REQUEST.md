@@ -4,6 +4,8 @@ Voegt een afzonderlijke, onderhoudbare versie toe op `interactief/voyager-1-v2/`
 De oorspronkelijke `interactief/voyager-1/index.html` blijft byte voor byte gelijk en de
 publieksindex blijft ernaar verwijzen. V2 wordt pas na redactionele beoordeling een voorkeursversie.
 
+> Update 18 november 2026: v2 is nu de voorkeursversie en `interactief/voyager-1/` is verwijderd. Het origineel staat als testreferentie in `tests/fixtures/voyager-1-origineel.html.txt`.
+
 De nieuwe versie scheidt HTML, CSS, modellen en bediening. De berekeningen en inhoudelijke teksten
 zijn behouden. Toetsenbordbediening, toegankelijke toestanden, scrollgedrag, minder beweging en
 de animatiescheduler zijn verbeterd. Nieuwe gedeelde bestanden zijn opt-in, zodat bestaande

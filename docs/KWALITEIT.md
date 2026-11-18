@@ -6,7 +6,7 @@ Bijgewerkt op 17 november 2026 voor het afzonderlijke herstel van de modeloverga
 
 | Controle | Resultaat |
 | --- | --- |
-| Oorspronkelijke Voyager Git-blob | Exact gelijk aan 971558a2a0b6ee0aa1f87a12ec4c1b896a46246c |
+| Oorspronkelijke Voyager Git-blob (`tests/fixtures/voyager-1-origineel.html.txt`) | Exact gelijk aan 971558a2a0b6ee0aa1f87a12ec4c1b896a46246c |
 | Numerieke controles, inclusief de herstelde modelovergang | 16.015 assertions geslaagd |
 | DOM/canvas-smoketest en scheduler | 15 aanvullende assertions geslaagd |
 | Berichtvalidatie host en kind | 19 aanvullende assertions geslaagd |
@@ -74,7 +74,7 @@ node tests/browser.cjs
 ```
 
 Het script controleert 320, 390, 768 en 1280 pixels, maakt screenshots, vergelijkt de beginpixels
-van het canvas zonder HUD-overlays met het origineel bij een bevroren klok, controleert toetsenbordbediening,
+van het canvas zonder HUD-overlays met het origineel (`tests/fixtures/voyager-1-origineel.html.txt`, via een onderschepte route als HTML geserveerd) bij een bevroren klok, controleert toetsenbordbediening,
 donkere modus, tekstveilige signalen, minder beweging en groei/krimp van twee iframes.
 Screenshots verschijnen in `test-results/`, buiten Git. Deze testafhankelijkheid maakt geen
 deel uit van de gepubliceerde visualisatie en is niet nodig voor GitHub Pages.

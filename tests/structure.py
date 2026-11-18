@@ -7,7 +7,7 @@ import re
 import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
-original = (ROOT / 'interactief/voyager-1/index.html').read_bytes()
+original = (ROOT / 'tests/fixtures/voyager-1-origineel.html.txt').read_bytes()
 assert hashlib.sha1(b'blob ' + str(len(original)).encode() + b'\0' + original).hexdigest() == '971558a2a0b6ee0aa1f87a12ec4c1b896a46246c'
 
 class Page(HTMLParser):

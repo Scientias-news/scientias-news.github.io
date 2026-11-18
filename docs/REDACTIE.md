@@ -26,8 +26,8 @@ Hernoem een gepubliceerde map niet: oudere artikelen blijven naar die URL verwij
    Controleer de voorbeeldweergave van het artikel op mobiel voordat het artikel live gaat.
 
 Bij een ingrijpende wijziging aan een bestaande visualisatie maak je een nieuwe map, bijvoorbeeld
-`maanfasen-v2`. Laat de bestaande URL werken. Bij Voyager blijft `voyager-1/` altijd ongewijzigd
-binnen dit project en wordt `voyager-1-v2/` pas na redactionele controle een voorkeursversie.
+`maanfasen-v2`. Laat de bestaande URL werken. Bij Voyager is `voyager-1-v2/` de voorkeursversie; de oorspronkelijke
+`voyager-1/` is verwijderd en blijft alleen als testreferentie bewaard in `tests/fixtures/voyager-1-origineel.html.txt`.
 
 ## Bestanden in je map
 

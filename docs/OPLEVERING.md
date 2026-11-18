@@ -34,7 +34,7 @@ git am /pad/naar/scientias-interactief-v2.patch
 
 Pas `/pad/naar/` aan de locatie van de gedownloade patch aan. Zijn er intussen wijzigingen
 op main, vergelijk of rebase dan vóór de review. Los conflicten in een eigen branch op en
-laat de oorspronkelijke `interactief/voyager-1/` ongemoeid.
+laat de testreferentie `tests/fixtures/voyager-1-origineel.html.txt` ongemoeid.
 
 ## ZIP gebruiken om te bekijken
 
@@ -42,7 +42,7 @@ De broncode-ZIP bevat alle websitebestanden, documentatie en tests zonder `.git`
 Pak hem uit en start `python3 -m http.server 8001 --bind 127.0.0.1` in de uitgepakte hoofdmap.
 Bekijk daarna in je eigen browser:
 
-- Origineel: `http://127.0.0.1:8001/interactief/voyager-1/`
+- Origineel: niet meer gepubliceerd; open zo nodig `tests/fixtures/voyager-1-origineel.html.txt` lokaal als HTML-bestand
 - Versie 2: `http://127.0.0.1:8001/interactief/voyager-1-v2/`
 
 Voor een test met twee origins en automatische iframehoogte volg je [WORDPRESS.md](WORDPRESS.md).

@@ -5,7 +5,7 @@ const read = (path) => {
   if (!ok) throw new Error('Cannot read ' + path);
   return imports.byteArray.toString(bytes);
 };
-const original = read('interactief/voyager-1/index.html');
+const original = read('tests/fixtures/voyager-1-origineel.html.txt');
 const bytes = imports.byteArray.fromString(original);
 const header = imports.byteArray.fromString('blob ' + bytes.length);
 const gitBytes = new Uint8Array(header.length + 1 + bytes.length);

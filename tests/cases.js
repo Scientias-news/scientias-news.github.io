@@ -3,7 +3,7 @@ globalThis.runScientiasTests = function (read, log) {
   let checks = 0;
   function assert(value, message) { checks++; if (!value) throw new Error(message); }
   function near(a, b, tolerance, message) { assert(Number.isFinite(a) && Math.abs(a - b) <= tolerance, message + ': ' + a + ' versus ' + b); }
-  const original = read('interactief/voyager-1/index.html');
+  const original = read('tests/fixtures/voyager-1-origineel.html.txt');
   const scripts = [...original.matchAll(/<script>([\s\S]*?)<\/script>/g)].map((m) => m[1]);
   const between = (text, start, end) => text.slice(text.indexOf(start), text.indexOf(end, text.indexOf(start)));
   const helpers = between(scripts[1], 'const C_AU_MS =', '// ---------- afgeleide mijlpalen ----------');

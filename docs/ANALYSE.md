@@ -4,6 +4,7 @@ Referentie: GitHub-commit `e812c6ef0acc6da12fad78d56745bee820248b51`, gelezen op
 Alle 11 oorspronkelijke bestanden zijn bekeken. De oorspronkelijke Voyager-map bevat uitsluitend `index.html`.
 De Git-blob van dat bestand is `971558a2a0b6ee0aa1f87a12ec4c1b896a46246c` (70.010 bytes).
 Deze blob is in de lokale branch ongewijzigd. De tests bewaken dit ook na samenvoegen.
+Update 18 november 2026: de map `interactief/voyager-1/` is verwijderd; het bestand staat met dezelfde blob in `tests/fixtures/voyager-1-origineel.html.txt`.
 
 ## Repository
 
@@ -13,7 +14,7 @@ Deze blob is in de lokale branch ongewijzigd. De tests bewaken dit ook na samenv
 | assets/style.css | Algemene opmaak, voornamelijk groenblauw | Ongewijzigd om bestaande embeds te beschermen |
 | voorbeelden/golflengte/ | Kleine zelfstandige demonstratie | Ongewijzigd |
 | interactief/_sjabloon/ | HTML, CSS en script voor een generieke schuifregelaar | Bijgewerkt naar werkend voorbeeld met model en bediening apart |
-| interactief/voyager-1/ | Complete Voyager-visualisatie in één bestand | Ongewijzigd, ook de URL |
+| interactief/voyager-1/ | Complete Voyager-visualisatie in één bestand | Ongewijzigd, ook de URL (op 18 november 2026 verwijderd) |
 | .nojekyll | Statische publicatie zonder Jekyll | Ongewijzigd |
 
 ## Voyager: structuur en gedrag

@@ -2,7 +2,7 @@
 
 | Onderdeel | Origineel | Versie 2 |
 | --- | --- | --- |
-| URL na eventuele merge | /interactief/voyager-1/ | /interactief/voyager-1-v2/ |
+| URL | Verwijderd op 18 november 2026 (was /interactief/voyager-1/) | /interactief/voyager-1-v2/ |
 | Bestanden | Eén HTML-bestand | HTML, CSS, physics.js, visualisatie.js en METHODE.md |
 | Fysica en brondata | Bestaand model | Dezelfde brondata en modellen, met herstelde aansluiting rond 2400 |
 | Overgang naar verre toekomst | Sprong van circa 8,60 miljoen km | Sluit aan op het werkelijke laatste tabelpunt; eerdere afstanden blijven gelijk |
@@ -22,8 +22,8 @@
 | Thema/signalen | Sleutels voyager1-* | Eigen sleutels voyager1-v2-* |
 | Iframehoogte | Vaste hoogte door host | Optioneel veilig resizeprotocol met WordPress-hostscript |
 | Toegankelijkheid | Basale labels, tabel | Extra focus, toestand, tijdtekst en rustige meldingen |
-| Oorspronkelijke map | Bestaande bestanden | Byte voor byte ongewijzigd |
+| Oorspronkelijke map | Verwijderd; bestand byte voor byte bewaard als `tests/fixtures/voyager-1-origineel.html.txt` | n.v.t. |
 
 De inhoudelijke teksten in de visualisatie zijn behouden. Een link naar METHODE.md geeft uitgebreidere
-transparantie over de beperkingen. De selectie van v2 als voorkeursversie is niet uitgevoerd.
-De publieksindex verwijst nog steeds naar het origineel. Gedeelde bestaande CSS blijft ongewijzigd.
+transparantie over de beperkingen. Versie 2 is inmiddels de voorkeursversie;
+de publieksindex verwijst ernaar. Gedeelde bestaande CSS blijft ongewijzigd.

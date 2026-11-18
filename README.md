@@ -10,6 +10,8 @@ Deze repository host afzonderlijke interactieve visualisaties voor [Scientias.nl
 - `assets/style.css`: gedeelde basisopmaak.
 - `interactief/_sjabloon/`: kopieerbaar startpunt voor nieuwe losse interactieve elementen.
 - `interactief/<naam>/`: aanbevolen plek voor iedere nieuwe productievisualisatie.
+- `interactief/voyager-1-v2/`: Voyager 1, één lichtdag van huis.
+- `interactief/fijnstof-europese-steden/`: kaart met fijnstof in 761 Europese steden.
 - `voorbeelden/golflengte/`: bestaande demonstratie, met eigen HTML en JavaScript.
 - `.nojekyll`: publiceer statische bestanden zonder Jekyll.
 
@@ -53,11 +55,12 @@ In **Settings → Pages**: **Deploy from a branch**, `main`, `/(root)`. Omdat de
 
 Begin bij [de korte redactiehandleiding](docs/REDACTIE.md), inclusief publicatiechecklist.
 
-## Voyager versie 2 ter beoordeling
+## Voyager 1
 
-De oorspronkelijke [Voyager 1](interactief/voyager-1/) blijft intact en de voorkeurslink op de
-publieksindex blijft ongewijzigd. De nieuwe [versie 2](interactief/voyager-1-v2/) is afzonderlijk
-voorbereid. De nieuwe URL werkt publiek pas na een eventuele merge en Pages-deployment.
+[Versie 2](interactief/voyager-1-v2/) is de gepubliceerde Voyager-visualisatie; de publieksindex
+verwijst ernaar. De oorspronkelijke map `interactief/voyager-1/` is op 18 november 2026 verwijderd
+en is niet meer publiek bereikbaar. Het oorspronkelijke bestand staat ongewijzigd als testreferentie in
+`tests/fixtures/voyager-1-origineel.html.txt`, zodat de tests versie 2 nog steeds met het origineel kunnen vergelijken.
 
 - [Analyse van de bestaande repository](docs/ANALYSE.md)
 - [Verschillen tussen de versies](docs/VERSCHILLEN.md)
