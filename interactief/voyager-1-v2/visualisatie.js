@@ -748,9 +748,10 @@ function frame(now) {
   else last = 0;
 }
 // Wake a paused scene for each interaction without introducing parallel loops.
-['click', 'input', 'change', 'pointermove', 'wheel'].forEach((type) => {
+['click', 'input', 'change', 'pointermove', 'wheel', 'touchstart', 'touchmove'].forEach((type) => {
   document.addEventListener(type, (event) => {
     if (type === 'pointermove' && !ptrs.size) return;
+    if (type.startsWith('touch') && !tg) return;
     if (type === 'wheel' && event.target !== canvas) return;
     clearTimeout(timer); timer = 0; invalidate();
   }, { passive: true });
