@@ -58,6 +58,7 @@ van de artikelpagina en van andere iframes.
 - [ ] Informatie is ook als tekst of tabel beschikbaar en hangt niet alleen van kleur af.
 - [ ] Minder beweging wordt gerespecteerd; bewegende onderdelen kunnen pauzeren.
 - [ ] Scrollen over de kaart laat het artikel normaal bewegen.
+- [ ] Bij slepen, zoomen of animatie: de handmatige touchcontrole uit [INTERACTIE.md](INTERACTIE.md) is gedaan op een echte iPad en Android-telefoon.
 - [ ] Er zijn geen onverwachte externe scripts, dataverzoeken of geheime sleutels.
 - [ ] Tests slagen en de pull request is inhoudelijk en technisch nagekeken.
 - [ ] In de WordPress-preview groeit en krimpt de iframe zonder afgesneden inhoud.

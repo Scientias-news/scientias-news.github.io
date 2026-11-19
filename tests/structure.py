@@ -110,6 +110,17 @@ for element in elements:
         assert not urlsplit(target).netloc, f'{element.name}: no external scripts ({target})'
     if element.name not in NIET_IN_INDEX:
         assert f'interactief/{element.name}' in linked, f'{element.name} is missing from index.html (or add it to NIET_IN_INDEX in tests/structure.py)'
+# Touch rules from docs/INTERACTIE.md that can be checked without a real finger.
+for element in [ROOT / 'interactief' / '_sjabloon', *elements]:
+    for css in element.glob('*.css'):
+        for value in re.findall(r'touch-action\s*:\s*([^;}]+)', css.read_text()):
+            assert 'pinch-zoom' not in value, f'{element.name}/{css.name}: no pinch-zoom in touch-action, handle pinching yourself (docs/INTERACTIE.md rule 2)'
+    for js in element.glob('*.js'):
+        code = js.read_text()
+        for match in re.finditer(r"addEventListener\(\s*'touchmove'", code):
+            following = code.find('addEventListener(', match.end())
+            call = code[match.start():following if following > 0 else len(code)]
+            assert re.search(r'passive\s*:\s*false', call), f'{element.name}/{js.name}: touchmove needs {{ passive: false }} (docs/INTERACTIE.md rule 2)'
 for name in NIET_IN_INDEX:
     assert (ROOT / 'interactief' / name).is_dir(), f'NIET_IN_INDEX lists unknown element {name}'
 
