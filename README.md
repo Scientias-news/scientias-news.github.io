@@ -23,7 +23,7 @@ Elke visualisatie werkt zelfstandig met een eigen `index.html`. Specifieke CSS e
 
 1. Kopieer de hele map `interactief/_sjabloon/` naar `interactief/<unieke-korte-naam>/`.
 2. Bewerk `index.html`, `style.css`, `physics.js`, `visualisatie.js` en `METHODE.md` in die nieuwe map.
-3. Test het element op desktop, mobiel en met toetsenbord.
+3. Test het element op desktop, mobiel en met toetsenbord. Kun je slepen, zoomen of beweegt er iets, volg dan [de regels voor aanraken, zoomen en animatie](docs/INTERACTIE.md).
 4. Werk op een eigen branch en open een pull request naar `main`. Laat een collega controleren voordat iemand samenvoegt. GitHub Pages publiceert de bestanden na de merge bij de volgende deployment.
 5. Gebruik `https://scientias-news.github.io/interactief/<unieke-korte-naam>/` in het WordPress-iframe.
 6. Voeg een tegel toe aan `index.html`. De tests controleren dat elk element onder `interactief/` op de overzichtspagina staat.

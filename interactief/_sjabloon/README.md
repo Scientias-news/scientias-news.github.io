@@ -13,5 +13,8 @@ De voorbeeldbestanden werken direct zonder installatie of buildproces.
 
 Gedeelde bestanden komen uit `../../assets/v1/`. Wijzig die nooit; zie de README in de hoofdmap.
 
+Kun je in je element slepen, zoomen of beweegt er iets? Volg dan [de regels voor aanraken, zoomen en animatie](../../docs/INTERACTIE.md).
+De tests controleren een deel daarvan automatisch.
+
 Lees [de redactiehandleiding](../../docs/REDACTIE.md) voor de stappen in GitHub en de publicatiecontrole.
 Gebruik [de WordPress-handleiding](../../docs/WORDPRESS.md) voor de iframecode.

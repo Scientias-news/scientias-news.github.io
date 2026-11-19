@@ -79,9 +79,9 @@ donkere modus, tekstveilige signalen, minder beweging en groei/krimp van twee if
 Screenshots verschijnen in `test-results/`, buiten Git. Deze testafhankelijkheid maakt geen
 deel uit van de gepubliceerde visualisatie en is niet nodig voor GitHub Pages.
 
-Controleer daarnaast handmatig op iOS Safari en Android Chrome: verticaal artikel-scrollen,
-horizontaal draaien van de kaart, beschikbare zoomknoppen, eventuele browserpinch en het
-verdwijnen/hervatten van animatie. Controleer met NVDA of VoiceOver de volgorde, tijdlijnwaarden,
+Controleer daarnaast handmatig op iOS Safari en Android Chrome volgens de checklist in
+[INTERACTIE.md](INTERACTIE.md): verticaal artikel-scrollen, horizontaal draaien, knijpen
+zonder browserzoom, vloeiend tekenen tijdens gebaren en het verdwijnen/hervatten van animatie. Controleer met NVDA of VoiceOver de volgorde, tijdlijnwaarden,
 mijlpalen en tabel. De kleine stippen boven de tijdlijn blijven een aanvullende bediening met
 kleine aanraakdoelen; de grote vorige/volgende-knoppen en mijlpaalregels zijn het alternatief.
 
