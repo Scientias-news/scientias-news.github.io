@@ -576,22 +576,79 @@ canvas.addEventListener('keydown', (e) => {
 });
 
 // slepen, zoomen, knijpen
-const ptrs = new Map(); let pinch = null;
+// Muis en pen lopen via pointer events. Vingers lopen via touch events: die
+// blijven binnenkomen als de browser een gebaar overneemt, en alleen daar kan
+// preventDefault het zoomen van de pagina (of van het artikel rond de iframe)
+// tegenhouden. Eén vinger: opzij vegen draait, omhoog/omlaag scrolt het
+// artikel. Twee vingers: knijpen zoomt, samen omhoog/omlaag schuiven kantelt.
+const ptrs = new Map();
 canvas.addEventListener('pointerdown', (e) => {
+  if (e.pointerType === 'touch') return;
   canvas.setPointerCapture(e.pointerId); ptrs.set(e.pointerId, [e.clientX, e.clientY]); canvas.style.cursor = 'grabbing';
-  if (ptrs.size === 2) { const [a, b] = [...ptrs.values()]; pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), z: S.zoom }; }
 });
 canvas.addEventListener('pointermove', (e) => {
   const p = ptrs.get(e.pointerId); if (!p) return;
   const dx = e.clientX - p[0], dy = e.clientY - p[1]; ptrs.set(e.pointerId, [e.clientX, e.clientY]);
-  if (ptrs.size === 1) { S.yaw += dx * 0.005; S.pitch = clamp(S.pitch + dy * 0.005, 0, 1.52); }
-  else if (ptrs.size === 2 && pinch) {
-    const [a, b] = [...ptrs.values()];
-    S.zoom = S.tz = clamp(pinch.z + Math.log10(Math.max(1, Math.hypot(a[0] - b[0], a[1] - b[1])) / Math.max(1, pinch.d)), ZMIN, ZMAX); setFollow(false);
-  }
+  S.yaw += dx * 0.005; S.pitch = clamp(S.pitch + dy * 0.005, 0, 1.52);
 });
-const endPtr = (e) => { ptrs.delete(e.pointerId); if (ptrs.size < 2) pinch = null; if (!ptrs.size) canvas.style.cursor = 'grab'; };
+const endPtr = (e) => { ptrs.delete(e.pointerId); if (!ptrs.size) canvas.style.cursor = 'grab'; };
 canvas.addEventListener('pointerup', endPtr); canvas.addEventListener('pointercancel', endPtr);
+
+let tg = null; // lopend touchgebaar
+const touchPair = (list) => {
+  const a = list[0], b = list[1];
+  return { d: Math.max(1, Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY)), y: (a.clientY + b.clientY) / 2 };
+};
+function touchStart(e) {
+  if (e.touches.length >= 2) {
+    if (e.cancelable) e.preventDefault();
+    const p = touchPair(e.touches);
+    tg = { mode: 'pinch', d: p.d, z: S.zoom, y: p.y, pitch: S.pitch };
+    setFollow(false);
+  } else if (e.touches.length === 1) {
+    const t = e.touches[0];
+    tg = { mode: 'wait', x0: t.clientX, y0: t.clientY, x: t.clientX };
+  }
+  invalidate();
+}
+canvas.addEventListener('touchstart', touchStart, { passive: false });
+canvas.addEventListener('touchmove', (e) => {
+  if (!tg) return;
+  if (tg.mode === 'pinch' && e.touches.length >= 2) {
+    if (e.cancelable) e.preventDefault();
+    const p = touchPair(e.touches);
+    S.zoom = S.tz = clamp(tg.z + Math.log10(p.d / tg.d), ZMIN, ZMAX);
+    S.pitch = clamp(tg.pitch + (p.y - tg.y) * 0.005, 0, 1.52);
+  } else if (e.touches.length === 1) {
+    const t = e.touches[0];
+    if (tg.mode === 'wait') {
+      const ax = Math.abs(t.clientX - tg.x0), ay = Math.abs(t.clientY - tg.y0);
+      if (ax < 8 && ay < 8) return;
+      tg.mode = ax > ay ? 'rotate' : 'scroll';
+    }
+    if (tg.mode === 'rotate') {
+      if (e.cancelable) e.preventDefault();
+      S.yaw += (t.clientX - tg.x) * 0.005;
+    }
+    tg.x = t.clientX;
+  }
+  invalidate();
+}, { passive: false });
+const touchEnd = (e) => {
+  if (e.touches.length >= 2) touchStart(e);
+  else if (e.touches.length === 1 && tg && tg.mode === 'pinch') { const t = e.touches[0]; tg = { mode: 'rotate', x: t.clientX }; }
+  else if (!e.touches.length) tg = null;
+};
+canvas.addEventListener('touchend', touchEnd); canvas.addEventListener('touchcancel', touchEnd);
+// Safari: blokkeer paginazoom op de kaart; trackpad-knijpen op de Mac komt alleen hier binnen.
+let gz = null;
+canvas.addEventListener('gesturestart', (e) => { e.preventDefault(); gz = tg ? null : S.tz; });
+canvas.addEventListener('gesturechange', (e) => {
+  e.preventDefault();
+  if (gz === null || !(e.scale > 0)) return;
+  setFollow(false); S.tz = clamp(gz + Math.log10(e.scale), ZMIN, ZMAX); invalidate();
+});
+canvas.addEventListener('gestureend', (e) => { e.preventDefault(); gz = null; });
 canvas.addEventListener('wheel', (e) => {
   if (!(e.ctrlKey || e.metaKey)) { zoomHint(); return; }
   e.preventDefault(); setFollow(false);

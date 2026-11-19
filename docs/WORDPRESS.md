@@ -90,8 +90,9 @@ Gebruik daarom geen `height:100vh`, `min-height:100vh` of beeldvullende absolute
 in een embed. Langzame lettertypen, details en veranderende teksten worden opnieuw gemeten.
 
 Het browserwiel wordt zonder Ctrl/⌘ niet overgenomen. Verticaal vegen blijft beschikbaar
-voor het artikel. Pinchen binnen een iframe verschilt tussen mobiele browsers: browserzoom
-kan voorrang krijgen. Zoomkeuzes en toetsenbordbediening blijven daarom altijd beschikbaar.
+voor het artikel. Knijpen op de Voyager-kaart vangt het element zelf af (touch events met `preventDefault`),
+zodat browserzoom of het artikel rond de iframe het gebaar niet overneemt. Zoomkeuzes en
+toetsenbordbediening blijven daarnaast altijd beschikbaar.
 
 ## Proef zonder productieaanpassingen
 
