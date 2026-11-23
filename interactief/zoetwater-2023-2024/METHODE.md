@@ -45,4 +45,4 @@ Uit de dataset berekend en vergeleken met de studie:
 
 ## Bewerking
 
-Vereenvoudigd met mapshaper (0,8%, gewogen), geprojecteerd in Equal Earth met d3-geo, afgerond op 1 pixel bij een breedte van 960. Het landsilhouet komt uit Natural Earth via world-atlas (110m). Het lettertype wordt geladen uit de map van de fijnstofkaart, zodat er geen nieuwe fontbestanden bijkomen.
+Vereenvoudigd met mapshaper (0,8%, gewogen), geprojecteerd in Equal Earth met d3-geo, afgerond op 1 pixel bij een breedte van 960. Het landsilhouet komt uit Natural Earth via world-atlas (110m). Het lettertype (Montserrat-subset) komt uit de gedeelde map `assets/v2/fonts/`.

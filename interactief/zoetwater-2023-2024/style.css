@@ -1,8 +1,8 @@
-/* Montserrat-subset dat al op deze site staat (zelfde bestanden als de fijnstofkaart): geen nieuwe fontbestanden. */
-@font-face{font-family:'Montserrat SC';font-weight:400;font-display:swap;src:url(../fijnstof-europese-steden/fonts/montserrat-sc-400.woff2) format('woff2')}
-@font-face{font-family:'Montserrat SC';font-weight:500;font-display:swap;src:url(../fijnstof-europese-steden/fonts/montserrat-sc-500.woff2) format('woff2')}
-@font-face{font-family:'Montserrat SC';font-weight:600;font-display:swap;src:url(../fijnstof-europese-steden/fonts/montserrat-sc-600.woff2) format('woff2')}
-@font-face{font-family:'Montserrat SC';font-weight:700;font-display:swap;src:url(../fijnstof-europese-steden/fonts/montserrat-sc-700.woff2) format('woff2')}
+/* Montserrat-subset uit de gedeelde map assets/v2/fonts/ (bevroren zodra gepubliceerd). */
+@font-face{font-family:'Montserrat SC';font-weight:400;font-display:swap;src:url(../../assets/v2/fonts/montserrat-sc-400.woff2) format('woff2')}
+@font-face{font-family:'Montserrat SC';font-weight:500;font-display:swap;src:url(../../assets/v2/fonts/montserrat-sc-500.woff2) format('woff2')}
+@font-face{font-family:'Montserrat SC';font-weight:600;font-display:swap;src:url(../../assets/v2/fonts/montserrat-sc-600.woff2) format('woff2')}
+@font-face{font-family:'Montserrat SC';font-weight:700;font-display:swap;src:url(../../assets/v2/fonts/montserrat-sc-700.woff2) format('woff2')}
 
 html,body{margin:0;background:#fff}
 .sc-graphic{

@@ -85,10 +85,15 @@ FROZEN = {
     'assets/v1/basis.css': '2780c167fb840565fdc8efc23f3673475751347c',
     'assets/v1/embed-child.js': '433e63e573c5819b06392f9f9a5967217d02df01',
     'assets/v1/style.css': 'a094e2d9976aeb99d3eadcf64b7b9ca54ac20810',
+    'assets/v2/fonts/montserrat-sc-400.woff2': 'f4b26df5c2377049fa26df8e595a0fe7ca16baaa',
+    'assets/v2/fonts/montserrat-sc-500.woff2': '44876e791240d76a4cbfcee933f54681e8ee234e',
+    'assets/v2/fonts/montserrat-sc-600.woff2': 'a0bfc7b873e431a4dd20f9a5308203dd7c50350f',
+    'assets/v2/fonts/montserrat-sc-700.woff2': 'cf273a06db03e67647f521d5b10e59010096a9db',
 }
 for name, expected in FROZEN.items():
     assert blob((ROOT / name).read_bytes()) == expected, f'{name} is frozen; create assets/v2/ instead'
-assert sorted(str(p.relative_to(ROOT)) for p in (ROOT / 'assets/v1').iterdir()) == sorted(FROZEN), 'assets/v1 is frozen'
+assert sorted(str(p.relative_to(ROOT)) for p in (ROOT / 'assets/v1').iterdir()) == sorted(n for n in FROZEN if n.startswith('assets/v1/')), 'assets/v1 is frozen'
+assert sorted(str(p.relative_to(ROOT)) for p in (ROOT / 'assets/v2/fonts').iterdir()) == sorted(n for n in FROZEN if n.startswith('assets/v2/fonts/')), 'assets/v2/fonts is frozen'
 
 # Every published element lives directly under interactief/ and is self-contained.
 # Elements deliberately left off the overview page go in NIET_IN_INDEX.
