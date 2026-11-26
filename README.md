@@ -8,6 +8,7 @@ Deze repository host afzonderlijke interactieve visualisaties voor [Scientias.nl
 
 - `index.html` en `overzicht.css`: publieksindex met links naar de visualisaties. Deze opmaak mag vrij veranderen.
 - `assets/v1/`: gedeelde bestanden die gepubliceerde elementen laden (`style.css`, `basis.css`, `embed-child.js`). **Bevroren:** zie hieronder.
+- `assets/v2/fonts/`: gedeeld Montserrat-subset (400, 500, 600, 700) voor nieuwe elementen in de Scientias-huisstijl. Ook bevroren.
 - `interactief/_sjabloon/`: kopieerbaar startpunt voor nieuwe losse interactieve elementen.
 - `interactief/<naam>/`: aanbevolen plek voor iedere nieuwe productievisualisatie.
 - `interactief/voyager-1-v2/`: Voyager 1, één lichtdag van huis.

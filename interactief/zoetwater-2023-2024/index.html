@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Kaart: hoeveel water er in 2023 en 2024 door 985 rivierbekkens wereldwijd stroomde, vergeleken met normaal.">
+<title>Rivierwater wereldwijd in 2023 en 2024 | Scientias</title>
+<link rel="stylesheet" href="../../assets/v1/basis.css">
+<link rel="stylesheet" href="style.css">
+<script src="data.js" defer></script>
+<script src="visualisatie.js" defer></script>
+<script src="../../assets/v1/embed-child.js" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#zoetwater">Naar de kaart</a>
+<figure class="sc-graphic" id="zoetwater"><div class="sc-head"><span class="sc-logo" aria-label="Scientias">SCIENTI<svg viewBox="0 0 10 10" aria-hidden="true"><path d="M.9 10 5 .4 9.1 10" fill="none" stroke="#fff" stroke-width="1.15" stroke-linejoin="miter"/></svg>S</span><span class="sc-kicker">Kaart</span></div>
+<div class="sc-body">
+<h1 class="sc-title">Zuid-Amerika droogde uit, de Lage Landen kregen er water bij</h1>
+<p class="sc-sub">Hoeveel water er in 2023 en 2024 door de rivieren van 985 rivierbekkens stroomde, vergeleken met een gemiddeld jaar tussen 1991 en 2020. Een rivierbekken is het hele gebied waarvan het regenwater naar dezelfde rivier stroomt.</p>
+<div class="kpis"><div class="kpi"><b>5,7% minder</b><span>rivierwater wereldwijd in 2023 en 2024, de grootste daling sinds 1991</span></div><div class="kpi"><b>70% van het verlies</b><span>komt uit Zuid-Amerika, waar de rivieren 17,8% leger waren</span></div><div class="kpi"><b>37% meer</b><span>water in het bekken van Maas en Schelde, en 23% meer in dat van de Rijn</span></div></div>
+
+<div class="controls">
+<div class="views" role="group" aria-label="Wat toont de kaart?">
+<button type="button" class="view-btn" id="view-afvoer" aria-pressed="true">Meer of minder water</button>
+<button type="button" class="view-btn" id="view-oorzaak" aria-pressed="false">Waarom minder water?</button>
+</div>
+<div class="period" id="period">
+<button type="button" class="period-btn" id="periode-2324" aria-pressed="true">2023 en 2024 samen</button>
+<label class="year-label" for="jaar">Of kies een jaar: <output id="jaar-uit" for="jaar">2023</output></label>
+<div class="year-row"><button type="button" class="play" id="afspelen" aria-label="Speel de jaren 1991 tot 2025 af">▶</button><input id="jaar" type="range" min="1991" max="2025" step="1" value="2023" aria-describedby="jaar-hint"></div>
+<p class="hint" id="jaar-hint">Met de pijltjestoetsen ga je jaar per jaar.</p>
+</div>
+</div>
+
+<div class="sc-legend" id="legenda-afvoer" aria-label="Legenda: afwijking van de rivierafvoer">
+<span class="legend-title">Rivierwater tegenover normaal:</span>
+<span><i class="b-3"></i>30% of meer minder</span><span><i class="b-2"></i>15 tot 30% minder</span><span><i class="b-1"></i>5 tot 15% minder</span><span><i class="b0"></i>ongeveer normaal</span><span><i class="b1"></i>5 tot 15% meer</span><span><i class="b2"></i>15 tot 30% meer</span><span><i class="b3"></i>30% of meer meer</span><span><i class="dor"></i>nauwelijks rivierwater</span>
+</div>
+<div class="sc-legend" id="legenda-oorzaak" hidden aria-label="Legenda: belangrijkste oorzaak van minder rivierwater">
+<span class="legend-title">Belangrijkste oorzaak van minder rivierwater in 2023 en 2024:</span>
+<span><i class="c-P"></i>minder regen</span><span><i class="c-ET"></i>meer verdamping</span><span><i class="c-S"></i>bodem en grondwater hielden water vast</span><span><i class="c-meer"></i>geen daling</span>
+</div>
+
+<div class="sc-chart" id="kaart"><div class="sc-map-svg" data-src="kaart.svg"><noscript>De kaart vereist JavaScript. De cijfers per regio staan in de tabel hieronder.</noscript></div></div>
+<p class="status" id="status" role="status" aria-live="polite">Beweeg over de kaart of tik op een rivierbekken voor de cijfers.</p>
+
+<div class="river-search"><label for="rivier">Spring naar een rivier</label><select id="rivier"><option value="">Kies een rivier</option></select></div>
+
+<div class="timeline"><p class="mapcap" id="tijdlijn-titel">Wereldwijd: rivierwater per jaar tegenover normaal</p><div id="tijdlijn" role="img" aria-labelledby="tijdlijn-titel" aria-describedby="tijdlijn-uitleg"></div><p class="sr-only" id="tijdlijn-uitleg">Een staafdiagram van 1991 tot 2025. De afwijking schommelt meestal tussen 6% meer en 5% minder. In 2023 was het 6,6% minder, in 2024 4,8% minder, en in 2025 weer 1,0% meer dan normaal.</p></div>
+
+<div class="sc-notes"><p>Normaal is het gemiddelde van 1991 tot en met 2020. Gebieden met gemiddeld minder dan 10 millimeter rivierwater per jaar, zoals woestijnen, zijn lichtgrijs gearceerd: daar geven kleine verschillen grote percentages. De oorzaak is berekend voor 193 grotere bekkens en geldt voor de periode 2023 en 2024 samen. Groenland en Antarctica vallen buiten het onderzoek.</p><p>Voor de meeste bekkens zijn er geen rechtstreekse metingen. De onderzoekers schatten de afvoer met vijf zelflerende computermodellen, getraind op metingen in 150 grote bekkens.</p></div>
+<div class="sc-foot"><span><b>Bron:</b> Zhang et al. (2026), Science; data Zhang &amp; Wang, Zenodo (CC BY 4.0). <a href="METHODE.md">Methode</a></span><span>Kaart: Andrei Stiru / Scientias</span></div>
+<details class="sc-data"><summary>Bekijk de cijfers per regio en rivier</summary><div class="scroll"><table id="tabel-regio"><caption>Rivierwater in 2023 en 2024 tegenover normaal, per regio</caption><thead><tr><th>Regio</th><th>Verschil</th><th>Kubieke kilometer per jaar</th><th>Aandeel in het wereldwijde verschil</th></tr></thead><tbody></tbody></table><table id="tabel-rivier"><caption>Bekende rivieren (het bekken op de kaart rond die rivier)</caption><thead><tr><th>Rivier</th><th>2023 en 2024</th><th>2023</th><th>2024</th><th>2025</th></tr></thead><tbody></tbody></table></div></details>
+</div></figure>
+</body>
+</html>
