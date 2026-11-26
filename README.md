@@ -6,7 +6,8 @@ Deze repository host afzonderlijke interactieve visualisaties voor [Scientias.nl
 
 ## Indeling
 
-- `index.html` en `overzicht.css`: publieksindex met links naar de visualisaties. Deze opmaak mag vrij veranderen.
+- `index.html`: de voorpagina. Die stuurt bezoekers van https://scientias-news.github.io/ direct door naar Scientias.nl.
+- `overzicht/index.html` en `overzicht.css`: overzicht met links naar alle visualisaties, op https://scientias-news.github.io/overzicht/. Bedoeld voor de redactie en niet voor zoekmachines. Deze opmaak mag vrij veranderen.
 - `assets/v1/`: gedeelde bestanden die gepubliceerde elementen laden (`style.css`, `basis.css`, `embed-child.js`). **Bevroren:** zie hieronder.
 - `assets/v2/fonts/`: gedeeld Montserrat-subset (400, 500, 600, 700) voor nieuwe elementen in de Scientias-huisstijl. Ook bevroren.
 - `interactief/_sjabloon/`: kopieerbaar startpunt voor nieuwe losse interactieve elementen.
@@ -27,7 +28,7 @@ Elke visualisatie werkt zelfstandig met een eigen `index.html`. Specifieke CSS e
 3. Test het element op desktop, mobiel en met toetsenbord. Kun je slepen, zoomen of beweegt er iets, volg dan [de regels voor aanraken, zoomen en animatie](docs/INTERACTIE.md).
 4. Werk op een eigen branch en open een pull request naar `main`. Laat een collega controleren voordat iemand samenvoegt. GitHub Pages publiceert de bestanden na de merge bij de volgende deployment.
 5. Gebruik `https://scientias-news.github.io/interactief/<unieke-korte-naam>/` in het WordPress-iframe.
-6. Voeg een tegel toe aan `index.html`. De tests controleren dat elk element onder `interactief/` op de overzichtspagina staat.
+6. Voeg een tegel toe aan `overzicht/index.html`. Gebruik daar `../interactief/<naam>/` als link. De tests controleren dat elk element onder `interactief/` op de overzichtspagina staat.
    Moet een element bewust niet op de overzichtspagina, zet de mapnaam dan in `NIET_IN_INDEX` in `tests/structure.py`.
 
 **Belangrijk:** houd nieuwe mappen direct onder `interactief/`, op dezelfde diepte als `_sjabloon`. De verwijzing naar de gedeelde stylesheet is daarop afgestemd.
@@ -69,7 +70,7 @@ Begin bij [de korte redactiehandleiding](docs/REDACTIE.md), inclusief publicatie
 
 ## Voyager 1
 
-[Versie 2](interactief/voyager-1-v2/) is de gepubliceerde Voyager-visualisatie; de publieksindex
+[Versie 2](interactief/voyager-1-v2/) is de gepubliceerde Voyager-visualisatie; het overzicht
 verwijst ernaar. De oorspronkelijke map `interactief/voyager-1/` is op 18 november 2026 verwijderd
 en is niet meer publiek bereikbaar. Het oorspronkelijke bestand staat ongewijzigd als testreferentie in
 `tests/fixtures/voyager-1-origineel.html.txt`, zodat de tests versie 2 nog steeds met het origineel kunnen vergelijken.

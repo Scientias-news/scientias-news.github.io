@@ -99,8 +99,11 @@ assert sorted(str(p.relative_to(ROOT)) for p in (ROOT / 'assets/v2/fonts').iterd
 # Elements deliberately left off the overview page go in NIET_IN_INDEX.
 NIET_IN_INDEX = set()
 elements = sorted(p for p in (ROOT / 'interactief').iterdir() if p.is_dir() and not p.name.startswith('_'))
-overview = Page(); overview.feed((ROOT / 'index.html').read_text())
-linked = {urlsplit(r).path.strip('/') for r in overview.references}
+# The home page only forwards readers to Scientias.nl; the overview lives at overzicht/.
+home = (ROOT / 'index.html').read_text()
+assert 'url=https://scientias.nl/' in home and "location.replace('https://scientias.nl/')" in home, 'index.html must forward to https://scientias.nl/'
+overview = Page(); overview.feed((ROOT / 'overzicht' / 'index.html').read_text())
+linked = {urlsplit(r).path.strip('/').removeprefix('../').strip('/') for r in overview.references}
 for element in elements:
     html = element / 'index.html'
     assert html.exists(), f'{element.name} needs its own index.html'
@@ -114,7 +117,7 @@ for element in elements:
     for target in page.scripts:
         assert not urlsplit(target).netloc, f'{element.name}: no external scripts ({target})'
     if element.name not in NIET_IN_INDEX:
-        assert f'interactief/{element.name}' in linked, f'{element.name} is missing from index.html (or add it to NIET_IN_INDEX in tests/structure.py)'
+        assert f'interactief/{element.name}' in linked, f'{element.name} is missing from overzicht/index.html (or add it to NIET_IN_INDEX in tests/structure.py)'
 # Touch rules from docs/INTERACTIE.md that can be checked without a real finger.
 for element in [ROOT / 'interactief' / '_sjabloon', *elements]:
     for css in element.glob('*.css'):

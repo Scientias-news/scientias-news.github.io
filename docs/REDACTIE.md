@@ -39,7 +39,7 @@ Verandert een wijziging de betekenis van een al geplaatste iframe, maak dan een 
 | visualisatie.js | Knoppen, tekenen en toestand | Technische collega |
 | METHODE.md | Bronnen, peildatum, aannames en beperkingen | Redacteur en deskundige |
 
-Voeg een tegel toe aan de publieksindex (`index.html`); de tests controleren dat. Moet een element
+Voeg een tegel toe aan het overzicht (`overzicht/index.html`); de tests controleren dat. Moet een element
 bewust niet op de overzichtspagina, zet de mapnaam dan in `NIET_IN_INDEX` in `tests/structure.py`.
 Laad gedeelde bestanden via relatieve paden uit `assets/v1/`, bijvoorbeeld `../../assets/v1/basis.css`.
 Wijzig bestanden in `assets/v1/` nooit: oude artikelen laden ze ook. Verbeteringen komen in `assets/v2/`.
@@ -52,7 +52,7 @@ van de artikelpagina en van andere iframes.
 - [ ] Bron, peildatum, eenheden en beperkingen staan in de visualisatie en in METHODE.md.
 - [ ] Een inhoudelijk controleur heeft modellen, aannames en relevante uitkomsten bekeken.
 - [ ] Een nieuwe mapnaam is blijvend en bevat geen bestaande bestanden.
-- [ ] Het element staat op de publieksindex, of staat bewust in `NIET_IN_INDEX`.
+- [ ] Het element staat op het overzicht (`overzicht/index.html`), of staat bewust in `NIET_IN_INDEX`.
 - [ ] Desktop, tablet en smalle telefoon tonen alle bediening zonder horizontaal pagina-scrollen.
 - [ ] Tab, Enter, spatie en pijltjes werken logisch; de focus blijft zichtbaar.
 - [ ] Informatie is ook als tekst of tabel beschikbaar en hangt niet alleen van kleur af.
