@@ -1,0 +1,109 @@
+/* Montserrat-subset uit de gedeelde map assets/v2/fonts/ (bevroren zodra gepubliceerd). */
+@font-face{font-family:'Montserrat SC';font-weight:400;font-display:swap;src:url(../../assets/v2/fonts/montserrat-sc-400.woff2) format('woff2')}
+@font-face{font-family:'Montserrat SC';font-weight:500;font-display:swap;src:url(../../assets/v2/fonts/montserrat-sc-500.woff2) format('woff2')}
+@font-face{font-family:'Montserrat SC';font-weight:600;font-display:swap;src:url(../../assets/v2/fonts/montserrat-sc-600.woff2) format('woff2')}
+@font-face{font-family:'Montserrat SC';font-weight:700;font-display:swap;src:url(../../assets/v2/fonts/montserrat-sc-700.woff2) format('woff2')}
+
+html,body{margin:0;background:#fff}
+.sc-graphic{
+  color-scheme:light;
+  --green:#2C5941;--ink:#000;--ink2:#3D3D3D;--muted:#6B6B6B;--line:#E5E5E5;
+  --d3:#6E4210;--d2:#B07230;--d1:#E0B97F;--n0:#EDEDEA;--w1:#A9D0B6;--w2:#4FA36F;--w3:#2C5941;
+  --cP:#B07230;--cET:#2E2E2E;--cS:#4FA36F;--cMeer:#E3E3E0;
+  font-family:'Montserrat SC',var(--scientias-font);
+  color:var(--ink);-webkit-font-smoothing:antialiased;
+  max-width:760px;margin:0 auto;background:#fff;border:1px solid #000;text-align:left;line-height:normal
+}
+.sc-graphic *{box-sizing:border-box}
+.sc-head{background:#000;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.sc-logo{color:#fff;font-weight:500;font-size:17px;letter-spacing:.34em;line-height:1;display:inline-flex;align-items:center;white-space:nowrap}
+.sc-logo svg{width:.74em;height:.72em;margin-right:.34em;display:inline-block}
+.sc-kicker{color:#fff;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border-left:3px solid var(--green);padding-left:8px}
+.sc-body{padding:22px 20px 16px}
+.sc-title{font-size:24px;line-height:1.2;font-weight:700;margin:0 0 8px;letter-spacing:-.01em}
+.sc-sub{font-size:14.5px;line-height:1.45;color:var(--ink2);margin:0 0 18px}
+
+.kpis{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px}
+.kpi{flex:1 1 150px;border-left:3px solid var(--green);padding:2px 0 2px 10px}
+.kpi b{display:block;font-size:20px;font-weight:700;line-height:1.15}
+.kpi span{font-size:12.5px;color:var(--ink2);line-height:1.35;display:block}
+
+.controls{display:flex;flex-direction:column;gap:14px;align-items:stretch;margin:0 0 14px}
+.views{align-self:flex-start}
+.views{display:flex;border:1px solid #000;border-radius:4px;overflow:hidden}
+.view-btn,.period-btn,.play{font:inherit;font-size:13px;font-weight:600;cursor:pointer;background:#fff;color:#000;border:0;padding:9px 12px;min-height:40px}
+.view-btn+.view-btn{border-left:1px solid #000}
+.view-btn[aria-pressed="true"]{background:#000;color:#fff}
+.period{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:center;max-width:620px}
+.period-btn{border:1px solid #000;border-radius:4px;grid-row:span 2}
+.period-btn[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+.year-label{font-size:12.5px;font-weight:600;color:var(--ink2)}
+.year-label output{color:#000;font-weight:700;font-variant-numeric:tabular-nums}
+.year-row{display:flex;gap:8px;align-items:center}
+.play{width:40px;padding:0;border:1px solid #000;border-radius:50%;font-size:13px}
+.play[aria-pressed="true"]{background:#000;color:#fff}
+.year-row input{flex:1;accent-color:var(--green);min-width:0}
+.period.dim .year-label output{color:var(--muted)}
+.hint{grid-column:2;margin:0;font-size:11.5px;color:var(--muted)}
+.period[hidden]{display:none}
+
+.sc-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 10px;font-size:12px;color:var(--ink2);font-weight:500}
+.sc-legend[hidden]{display:none}
+.sc-legend span{display:inline-flex;align-items:center;gap:6px}
+.sc-legend .legend-title{color:#000;font-weight:600;flex-basis:100%}
+.sc-legend i{display:inline-block;width:18px;height:12px;border-radius:2px}
+.b-3{background:var(--d3)}.b-2{background:var(--d2)}.b-1{background:var(--d1)}.b0{background:var(--n0)}
+.b1{background:var(--w1)}.b2{background:var(--w2)}.b3{background:var(--w3)}
+.dor{background:repeating-linear-gradient(135deg,#F4F4F2 0 3px,#C8C8C4 3px 4px)}
+.c-P{background:var(--cP)}.c-ET{background:var(--cET)}.c-S{background:var(--cS)}.c-meer{background:var(--cMeer)}
+
+.sc-chart{position:relative;width:100%}
+.sc-map-svg{aspect-ratio:960/497}
+.sc-map-svg svg{width:100%;height:auto;display:block;touch-action:pan-y}
+.sc-map-svg .land{fill:#F4F4F2}
+.sc-map-svg .bekken{stroke:#fff;stroke-width:.35;cursor:pointer;fill:var(--n0)}
+.sc-map-svg .bekken.selected{stroke:#000;stroke-width:1.6;paint-order:stroke}
+@media (hover:hover){.sc-map-svg .bekken:hover{stroke:#000;stroke-width:1.2}}
+
+.sc-tip{position:absolute;pointer-events:none;opacity:0;transition:opacity .12s;background:#000;color:#fff;font-size:12.5px;line-height:1.45;padding:9px 11px;border-radius:6px;max-width:270px;z-index:5;box-shadow:0 4px 14px rgba(0,0,0,.18);white-space:pre-line}
+.status{margin:8px 0 12px;min-height:2.9em;font-size:13px;line-height:1.45}
+
+.river-search{margin:0 0 18px}
+.river-search label{display:block;margin-bottom:6px;font-size:13px;font-weight:600}
+.river-search select{font:inherit;font-size:14px;padding:8px 10px;border:1px solid #6B6B6B;border-radius:4px;background:#fff;max-width:100%}
+
+.mapcap{font-size:12.5px;font-weight:600;color:var(--ink2);margin:0 0 6px}
+#tijdlijn svg{width:100%;height:auto;display:block}
+#tijdlijn .bar{cursor:pointer}
+#tijdlijn .bar.sel{stroke:#000;stroke-width:1.5}
+#tijdlijn text{font-family:inherit;font-size:11px;fill:var(--muted);font-weight:500}
+#tijdlijn text.lab{fill:#000;font-weight:700}
+#tijdlijn .zero{stroke:#000;stroke-width:1}
+#tijdlijn .grid{stroke:var(--line);stroke-width:1}
+
+.sc-notes{margin:14px 0 0;font-size:12px;line-height:1.5;color:var(--muted)}
+.sc-notes p{margin:0 0 4px}
+.sc-foot{border-top:1px solid var(--line);margin-top:12px;padding-top:10px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:11.5px;color:var(--muted);font-weight:500}
+.sc-foot b{color:var(--ink);font-weight:600}
+.sc-foot a{color:var(--green)}
+details.sc-data{margin-top:10px;font-size:12.5px}
+details.sc-data summary{cursor:pointer;color:var(--green);font-weight:600}
+details.sc-data .scroll{max-height:340px;overflow:auto}
+details.sc-data table{border-collapse:collapse;margin-top:10px;width:100%;font-size:12px}
+details.sc-data caption{text-align:left;font-weight:600;padding:4px 0}
+details.sc-data th,details.sc-data td{text-align:left;padding:5px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+details.sc-data td.n{text-align:right;font-variant-numeric:tabular-nums}
+details.sc-data th{font-weight:600;color:var(--ink2)}
+.sc-graphic :focus-visible{outline:2px solid var(--green);outline-offset:2px}
+
+@media (max-width:520px){
+  .sc-graphic{border-left:0;border-right:0}
+  .sc-title{font-size:20px}
+  .sc-body{padding:18px 14px 14px}
+  .sc-head{padding:12px 14px}
+  .sc-logo{font-size:15px}
+  .period{grid-template-columns:1fr}
+  .period-btn{grid-row:auto;justify-self:start}
+  .hint{grid-column:1}
+}
+@media (prefers-reduced-motion:reduce){.sc-tip{transition:none}}
